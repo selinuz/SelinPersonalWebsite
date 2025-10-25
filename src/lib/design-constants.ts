@@ -1,0 +1,261 @@
+/**
+ * Design System Constants
+ * Centralized design tokens for consistent styling across the bulletin board
+ */
+
+// ============================================================================
+// PUSHPIN STYLES
+// ============================================================================
+
+export const PUSHPIN = {
+  // Pushpin for paper/card elements (white background)
+  paper: {
+    color: "bg-blue-500",
+    size: {
+      small: "0.6rem",
+      medium: "1rem",
+      large: "1.2rem",
+    },
+    shadow: "shadow-md",
+  },
+  // Alternative pushpin colors for variety
+  colors: {
+    red: "bg-red-500",
+    blue: "bg-blue-500",
+    yellow: "bg-yellow-500",
+    green: "bg-green-500",
+    purple: "bg-purple-500",
+  },
+} as const;
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+export const TYPOGRAPHY = {
+  // Font families
+  fontFamily: {
+    mono: "font-mono",
+    sans: "font-sans",
+  },
+
+  // Font sizes
+  fontSize: {
+    xs: "text-xs", // 0.75rem
+    sm: "text-sm", // 0.875rem
+    base: "text-base", // 1rem
+    lg: "text-lg", // 1.125rem
+    xl: "text-xl", // 1.25rem
+    "2xl": "text-2xl", // 1.5rem
+    "3xl": "text-3xl", // 1.875rem
+    "4xl": "text-4xl", // 2.25rem
+  },
+
+  // Font weights
+  fontWeight: {
+    normal: "font-normal",
+    medium: "font-medium",
+    semibold: "font-semibold",
+    bold: "font-bold",
+  },
+
+  // Text colors (bulletin board theme)
+  textColor: {
+    primary: "text-gray-800", // Main text on paper
+    secondary: "text-gray-700", // Secondary text
+    muted: "text-gray-600", // Muted/subtle text
+    light: "text-gray-500", // Very light text
+    foreground: "text-foreground", // CSS variable based
+  },
+
+  // Preset text styles for common use cases
+  presets: {
+    heading: "text-2xl font-bold text-gray-800 font-mono",
+    subheading: "text-xl font-semibold text-gray-700 font-mono",
+    body: "text-sm text-gray-700 font-mono",
+    label: "text-foreground font-mono font-semibold",
+    caption: "text-gray-700 font-mono",
+  },
+} as const;
+
+// ============================================================================
+// COLORS
+// ============================================================================
+
+export const COLORS = {
+  // Paper/Card backgrounds
+  paper: {
+    white: "bg-white",
+    cream: "bg-amber-50",
+    lightYellow: "bg-yellow-50",
+  },
+
+  // Cork board backgrounds
+  board: {
+    gradient: "bg-gradient-to-br from-amber-100 via-orange-50 to-amber-50",
+    solid: "bg-amber-100",
+  },
+
+  // Icon colors
+  icons: {
+    folder: "text-yellow-600",
+    pdfFile: "text-red-600",
+    docFile: "text-blue-600",
+    txtFile: "text-gray-600",
+  },
+
+  // Shadow colors
+  shadows: {
+    sm: "shadow-sm",
+    md: "shadow-md",
+    lg: "shadow-lg",
+    xl: "shadow-xl",
+    "2xl": "shadow-2xl",
+  },
+} as const;
+
+// ============================================================================
+// SPACING & SIZING
+// ============================================================================
+
+export const SPACING = {
+  // Padding values
+  padding: {
+    xs: "p-2",
+    sm: "p-4",
+    md: "p-6",
+    lg: "p-8",
+    xl: "p-12",
+  },
+
+  // Gap values
+  gap: {
+    xs: "gap-2",
+    sm: "gap-3",
+    md: "gap-4",
+    lg: "gap-6",
+    xl: "gap-8",
+  },
+
+  // Margin values
+  margin: {
+    xs: "m-2",
+    sm: "m-4",
+    md: "m-6",
+    lg: "m-8",
+    xl: "m-12",
+  },
+} as const;
+
+export const SIZING = {
+  // Icon sizes
+  icon: {
+    sm: "w-16 h-16",
+    md: "w-20 h-20",
+    lg: "w-24 h-24",
+  },
+
+  // Card/Container widths
+  container: {
+    sm: "max-w-md",
+    md: "max-w-2xl",
+    lg: "max-w-4xl",
+    xl: "max-w-5xl",
+  },
+} as const;
+
+// ============================================================================
+// PAPER/CARD STYLES
+// ============================================================================
+
+export const PAPER_STYLES = {
+  // Standard paper note (like welcome card)
+  note: {
+    background: COLORS.paper.white,
+    padding: SPACING.padding.lg,
+    shadow: COLORS.shadows["2xl"],
+    // Small rotation for organic look
+    rotationClasses: "transform rotate-1",
+  },
+
+  // Polaroid-style card
+  polaroid: {
+    background: COLORS.paper.white,
+    shadow: COLORS.shadows.xl,
+  },
+} as const;
+
+// ============================================================================
+// ANIMATIONS & INTERACTIONS
+// ============================================================================
+
+export const INTERACTIONS = {
+  // Hover effects
+  hover: {
+    lift: "hover:scale-105 hover:-translate-y-1",
+    scale: "hover:scale-105",
+    shadow: "hover:shadow-2xl",
+  },
+
+  // Transitions
+  transition: {
+    default: "transition-transform",
+    all: "transition-all",
+    colors: "transition-colors",
+  },
+
+  // Cursor styles
+  cursor: {
+    pointer: "cursor-pointer",
+    default: "cursor-default",
+  },
+} as const;
+
+// ============================================================================
+// COMPONENT-SPECIFIC CONSTANTS
+// ============================================================================
+
+export const POLAROID = {
+  // Relative sizing ratios
+  borderRatio: {
+    side: 0.08,
+    bottom: 0.3,
+    top: 0.08,
+  },
+  aspectRatio: {
+    portrait: 1.2,
+    landscape: 0.75,
+  },
+  defaultWidth: 12, // in rem
+} as const;
+
+export const CORK_TEXTURE = {
+  opacity: "opacity-30",
+  pattern: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23964B00' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+} as const;
+
+// ============================================================================
+// HELPER FUNCTIONS
+// ============================================================================
+
+/**
+ * Get pushpin style for a card with background
+ * @param size - Size of the pushpin (small, medium, large)
+ * @param color - Color of the pushpin (optional, defaults to blue)
+ */
+export function getPushpinStyle(
+  size: keyof typeof PUSHPIN.paper.size = "medium",
+  color: keyof typeof PUSHPIN.colors = "blue"
+) {
+  return {
+    className: `${PUSHPIN.colors[color]} rounded-full ${PUSHPIN.paper.shadow}`,
+    size: PUSHPIN.paper.size[size],
+  };
+}
+
+/**
+ * Combine multiple class names (utility function)
+ */
+export function cn(...classes: (string | undefined | false)[]): string {
+  return classes.filter(Boolean).join(" ");
+}

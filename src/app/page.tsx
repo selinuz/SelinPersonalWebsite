@@ -1,21 +1,9 @@
-import Navbar from "../components/Navbar";
-import Landing from "../components/Landing";
-import About from "../components/About";
-import Projects from "../components/Projects";
-import CoreValues from "../components/CoreValues";
-import Contact from "../components/Contact";
+import BulletinBoard from "../components/BulletinBoard";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Landing />
-        <About />
-        <Projects />
-        <CoreValues />
-        <Contact />
-      </main>
-    </>
+    <main className="min-h-screen">
+      <BulletinBoard />
+    </main>
   );
 }
