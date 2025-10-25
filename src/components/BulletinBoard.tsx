@@ -5,6 +5,7 @@ import FolderIcon from "./FolderIcon";
 import FileIcon from "./FileIcon";
 import ProjectDialog from "./ProjectDialog";
 import PolaroidCard from "./PolaroidCard";
+import { ThemeToggle } from "./ThemeToggle";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -24,6 +25,8 @@ export default function BulletinBoard() {
 
   return (
     <div className={cn("relative w-full min-h-screen overflow-hidden", COLORS.board.gradient)}>
+      {/* Theme Toggle */}
+      <ThemeToggle />
       {/* Cork board texture overlay */}
       <div
         className={cn("absolute inset-0", CORK_TEXTURE.opacity)}

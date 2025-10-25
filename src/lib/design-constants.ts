@@ -10,7 +10,7 @@
 export const PUSHPIN = {
   // Pushpin for paper/card elements (white background)
   paper: {
-    color: "bg-blue-500",
+    color: "bg-primary",
     size: {
       small: "0.6rem",
       medium: "1rem",
@@ -20,11 +20,11 @@ export const PUSHPIN = {
   },
   // Alternative pushpin colors for variety
   colors: {
-    red: "bg-red-500",
-    blue: "bg-blue-500",
-    yellow: "bg-yellow-500",
-    green: "bg-green-500",
-    purple: "bg-purple-500",
+    red: "bg-destructive",
+    blue: "bg-primary",
+    yellow: "bg-accent",
+    green: "bg-emerald-500",
+    purple: "bg-primary",
   },
 } as const;
 
@@ -61,20 +61,20 @@ export const TYPOGRAPHY = {
 
   // Text colors (bulletin board theme)
   textColor: {
-    primary: "text-gray-800", // Main text on paper
-    secondary: "text-gray-700", // Secondary text
-    muted: "text-gray-600", // Muted/subtle text
-    light: "text-gray-500", // Very light text
+    primary: "text-foreground", // Main text on paper
+    secondary: "text-foreground/90", // Secondary text
+    muted: "text-muted-foreground", // Muted/subtle text
+    light: "text-muted-foreground/70", // Very light text
     foreground: "text-foreground", // CSS variable based
   },
 
   // Preset text styles for common use cases
   presets: {
-    heading: "text-2xl font-bold text-gray-800 font-mono",
-    subheading: "text-xl font-semibold text-gray-700 font-mono",
-    body: "text-sm text-gray-700 font-mono",
+    heading: "text-2xl font-bold text-foreground font-mono",
+    subheading: "text-xl font-semibold text-foreground font-mono",
+    body: "text-sm text-foreground font-mono",
     label: "text-foreground font-mono font-semibold",
-    caption: "text-gray-700 font-mono",
+    caption: "text-foreground/80 font-mono",
   },
 } as const;
 
@@ -85,23 +85,23 @@ export const TYPOGRAPHY = {
 export const COLORS = {
   // Paper/Card backgrounds
   paper: {
-    white: "bg-white",
-    cream: "bg-amber-50",
-    lightYellow: "bg-yellow-50",
+    white: "bg-card",
+    cream: "bg-secondary",
+    lightYellow: "bg-accent",
   },
 
   // Cork board backgrounds
   board: {
-    gradient: "bg-gradient-to-br from-amber-100 via-orange-50 to-amber-50",
-    solid: "bg-amber-100",
+    gradient: "bg-background",
+    solid: "bg-background",
   },
 
   // Icon colors
   icons: {
-    folder: "text-yellow-600",
-    pdfFile: "text-red-600",
-    docFile: "text-blue-600",
-    txtFile: "text-gray-600",
+    folder: "text-primary",
+    pdfFile: "text-destructive",
+    docFile: "text-accent",
+    txtFile: "text-muted-foreground",
   },
 
   // Shadow colors
@@ -230,8 +230,8 @@ export const POLAROID = {
 } as const;
 
 export const CORK_TEXTURE = {
-  opacity: "opacity-30",
-  pattern: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23964B00' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+  opacity: "opacity-25",
+  pattern: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23964B00' fill-opacity='0.25'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
 } as const;
 
 // ============================================================================
