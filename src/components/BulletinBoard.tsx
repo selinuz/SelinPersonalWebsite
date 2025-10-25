@@ -23,31 +23,59 @@ export default function BulletinBoard() {
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const width = typeof window !== "undefined" ? window.innerWidth : 1200;
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
-  const welcomeNoteWidth = 448;
+  const welcomeNoteWidth = isMobile ? Math.min(width * 0.85, 360) : 448;
 
   useEffect(() => {
     setIsMounted(true);
+
+    // Check if mobile on mount and window resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const pushpinStyle = getPushpinStyle("small", "blue");
 
-  const initialPositions = {
-    "polaroid-card": { x: width / 8, y: height / 10 },
-    "welcome-note": {
-      x: (width - welcomeNoteWidth) / 2,
-      y: height / 20,
-    },
-    "projects-folder": { x: width / 1.7, y: height / 3 },
-    "resume-file": { x: width / 2.7, y: height / 3 },
+  // Responsive positioning based on screen size
+  const getInitialPositions = () => {
+    if (isMobile) {
+      return {
+        "polaroid-card": { x: width * 0.05, y: height * 0.45 },
+        "welcome-note": {
+          x: (width - welcomeNoteWidth) / 2,
+          y: height * 0.05,
+        },
+        "projects-folder": { x: width * 0.15, y: height * 0.72 },
+        "resume-file": { x: width * 0.55, y: height * 0.68 },
+      };
+    }
+
+    return {
+      "polaroid-card": { x: width / 8, y: height / 10 },
+      "welcome-note": {
+        x: (width - welcomeNoteWidth) / 2,
+        y: height / 20,
+      },
+      "projects-folder": { x: width / 1.7, y: height / 3 },
+      "resume-file": { x: width / 2.7, y: height / 3 },
+    };
   };
+
+  const initialPositions = getInitialPositions();
 
   if (!isMounted) {
     return (
       <div
         className={cn(
-          "relative w-full min-h-screen overflow-hidden",
+          "relative w-full min-h-screen overflow-x-hidden overflow-y-auto",
           COLORS.board.gradient
         )}>
         {/* Theme Toggle */}
@@ -62,8 +90,7 @@ export default function BulletinBoard() {
         {/* Main content area */}
         <div
           className={cn(
-            "relative z-10 flex flex-col items-center min-h-screen",
-            SPACING.padding.lg
+            "relative z-10 flex flex-col items-center min-h-screen p-4 sm:p-8"
           )}>
           {/* Welcome note - pinned paper style */}
           <div
@@ -73,7 +100,7 @@ export default function BulletinBoard() {
               COLORS.shadows["2xl"],
               PAPER_STYLES.note.rotationClasses,
               SIZING.container.sm,
-              "mt-8 mb-12 relative"
+              "mt-4 sm:mt-8 mb-8 sm:mb-12 relative mx-4 sm:mx-0"
             )}>
             {/* Push pin for welcome note */}
             <div
@@ -87,8 +114,14 @@ export default function BulletinBoard() {
                 top: `-${pushpinStyle.size}`,
               }}></div>
 
-            <h1 className={cn(TYPOGRAPHY.presets.heading, "mb-4")}>Welcome!</h1>
-            <p className={TYPOGRAPHY.presets.body}>
+            <h1
+              className={cn(
+                TYPOGRAPHY.presets.heading,
+                "mb-4 text-xl sm:text-3xl"
+              )}>
+              Welcome!
+            </h1>
+            <p className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
               {
                 "This is my digital board, and a combination of how my brain and desktop looks like. Click on the icons below to explore more!"
               }
@@ -98,8 +131,8 @@ export default function BulletinBoard() {
           {/* Items container */}
           <div
             className={cn(
-              "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full",
-              SPACING.gap.lg,
+              "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 w-full px-4 sm:px-0",
+              SPACING.gap.md,
               SIZING.container.xl
             )}>
             {/* Projects Folder */}
@@ -118,11 +151,14 @@ export default function BulletinBoard() {
             />
 
             {/* Polaroid Picture */}
-            <PolaroidCard
-              imageSrc="/website_picture.jpeg"
-              caption="Hi, I am Selin!"
-              rotation={2}
-            />
+            <div className="col-span-2 sm:col-span-1 flex justify-center">
+              <PolaroidCard
+                imageSrc="/website_picture.jpeg"
+                caption="Hi, I am Selin!"
+                rotation={2}
+                width={isMobile ? 10 : 12}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -133,7 +169,7 @@ export default function BulletinBoard() {
     <DraggableProvider initialPositions={initialPositions}>
       <div
         className={cn(
-          "relative w-full min-h-screen overflow-hidden",
+          "relative w-full min-h-screen overflow-x-hidden overflow-y-auto",
           COLORS.board.gradient
         )}>
         {/* Theme Toggle */}
@@ -146,7 +182,8 @@ export default function BulletinBoard() {
           }}></div>
 
         {/* Main content area - using absolute positioning */}
-        <div className={cn("relative z-10 min-h-screen", SPACING.padding.lg)}>
+        <div
+          className={cn("relative z-10 min-h-screen p-4 sm:p-8", "touch-none")}>
           {/* Polaroid Picture - Left side */}
           <Draggable id="polaroid-card">
             <div className="absolute">
@@ -154,6 +191,7 @@ export default function BulletinBoard() {
                 imageSrc="/website_picture.jpeg"
                 caption="Hi, I am Selin!"
                 rotation={2}
+                width={isMobile ? 10 : 12}
               />
             </div>
           </Draggable>
@@ -169,7 +207,8 @@ export default function BulletinBoard() {
                   PAPER_STYLES.note.rotationClasses,
                   SIZING.container.sm,
                   "relative"
-                )}>
+                )}
+                style={{ width: isMobile ? `${welcomeNoteWidth}px` : "auto" }}>
                 {/* Push pin for welcome note */}
                 <div
                   className={cn(
@@ -182,10 +221,15 @@ export default function BulletinBoard() {
                     top: `-${pushpinStyle.size}`,
                   }}></div>
 
-                <h1 className={cn(TYPOGRAPHY.presets.heading, "mb-4")}>
+                <h1
+                  className={cn(
+                    TYPOGRAPHY.presets.heading,
+                    "mb-4 text-xl sm:text-2xl"
+                  )}>
                   Welcome!
                 </h1>
-                <p className={TYPOGRAPHY.presets.body}>
+                <p
+                  className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
                   {
                     "This is my digital board, and a combination of how my brain and desktop looks like. Click on the icons below to explore more!"
                   }

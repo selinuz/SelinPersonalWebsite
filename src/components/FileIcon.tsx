@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Badge } from "@/components/ui/badge";
 import { FileText } from "lucide-react";
@@ -15,17 +15,22 @@ interface FileIconProps {
   label: string;
   onClick?: () => void;
   rotation?: number;
-  fileType?: 'pdf' | 'doc' | 'txt';
+  fileType?: "pdf" | "doc" | "txt";
 }
 
-export default function FileIcon({ label, onClick, rotation = 0, fileType = 'pdf' }: FileIconProps) {
+export default function FileIcon({
+  label,
+  onClick,
+  rotation = 0,
+  fileType = "pdf",
+}: FileIconProps) {
   const getFileColor = () => {
     switch (fileType) {
-      case 'pdf':
+      case "pdf":
         return COLORS.icons.pdfFile;
-      case 'doc':
+      case "doc":
         return COLORS.icons.docFile;
-      case 'txt':
+      case "txt":
         return COLORS.icons.txtFile;
       default:
         return COLORS.icons.pdfFile;
@@ -41,15 +46,27 @@ export default function FileIcon({ label, onClick, rotation = 0, fileType = 'pdf
         INTERACTIONS.hover.lift
       )}
       onClick={onClick}
-      style={{ transform: `rotate(${rotation}deg)` }}
-    >
+      style={{ transform: `rotate(${rotation}deg)` }}>
       <div className={cn("flex flex-col items-center pt-2", SPACING.gap.sm)}>
-        <FileText className={cn(SIZING.icon.md, getFileColor(), "drop-shadow-lg")} />
+        <FileText
+          className={cn(SIZING.icon.md, getFileColor(), "drop-shadow-lg")}
+        />
         <div className={cn("flex flex-col items-center", SPACING.gap.xs)}>
-          <p className={cn(TYPOGRAPHY.presets.label, "text-center drop-shadow-sm")}>
+          <p
+            className={cn(
+              TYPOGRAPHY.presets.label,
+              "text-center drop-shadow-sm sm:text-sm"
+            )}>
             {label}
           </p>
-          <Badge variant="secondary" className={cn(TYPOGRAPHY.fontSize.xs, TYPOGRAPHY.fontFamily.mono, "uppercase")}>
+          <Badge
+            variant="secondary"
+            className={cn(
+              TYPOGRAPHY.fontSize.xs,
+              "sm:text-xs",
+              TYPOGRAPHY.fontFamily.mono,
+              "uppercase"
+            )}>
             {fileType}
           </Badge>
         </div>

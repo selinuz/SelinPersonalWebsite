@@ -34,13 +34,13 @@ export default function ProjectDialog({
 }: ProjectDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] bg-card border-border">
+      <DialogContent className="sm:max-w-[600px] max-w-[95vw] w-full bg-card border-border max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className={cn(TYPOGRAPHY.fontFamily.mono, TYPOGRAPHY.fontSize["2xl"], "text-card-foreground")}>
+          <DialogTitle className={cn(TYPOGRAPHY.fontFamily.mono, "text-xl sm:text-2xl", "text-card-foreground")}>
             {title}
           </DialogTitle>
           {description && (
-            <DialogDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-muted-foreground")}>
+            <DialogDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm", "text-muted-foreground")}>
               {description}
             </DialogDescription>
           )}
@@ -49,14 +49,14 @@ export default function ProjectDialog({
         {tags && tags.length > 0 && (
           <div className={cn("flex flex-wrap py-2", SPACING.gap.xs)}>
             {tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className={TYPOGRAPHY.fontFamily.mono}>
+              <Badge key={tag} variant="secondary" className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs")}>
                 {tag}
               </Badge>
             ))}
           </div>
         )}
 
-        <div className="py-4 text-card-foreground">
+        <div className="py-4 text-card-foreground text-sm">
           {children}
         </div>
 
@@ -64,7 +64,7 @@ export default function ProjectDialog({
           <Button
             onClick={() => onOpenChange(false)}
             variant="secondary"
-            className={TYPOGRAPHY.fontFamily.mono}
+            className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}
           >
             Close
           </Button>

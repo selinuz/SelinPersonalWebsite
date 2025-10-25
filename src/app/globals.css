@@ -125,4 +125,26 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    /* Prevent text selection when dragging on mobile */
+    .touch-none {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* Improve touch targets */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
 }

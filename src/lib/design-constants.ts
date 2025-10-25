@@ -151,8 +151,8 @@ export const SIZING = {
   // Icon sizes
   icon: {
     sm: "w-16 h-16",
-    md: "w-20 h-20",
-    lg: "w-24 h-24",
+    md: "w-20 h-20 sm:w-24 sm:h-24",
+    lg: "w-24 h-24 sm:w-28 sm:h-28",
   },
 
   // Card/Container widths
@@ -161,6 +161,23 @@ export const SIZING = {
     md: "max-w-2xl",
     lg: "max-w-4xl",
     xl: "max-w-5xl",
+  },
+} as const;
+
+// ============================================================================
+// RESPONSIVE BREAKPOINTS
+// ============================================================================
+
+export const BREAKPOINTS = {
+  mobile: {
+    max: 640, // matches Tailwind's sm breakpoint
+  },
+  tablet: {
+    min: 641,
+    max: 1024,
+  },
+  desktop: {
+    min: 1025,
   },
 } as const;
 

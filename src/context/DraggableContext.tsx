@@ -7,6 +7,7 @@ import {
   useSensor,
   useSensors,
   PointerSensor,
+  TouchSensor,
 } from "@dnd-kit/core";
 
 interface Position {
@@ -60,6 +61,12 @@ export const DraggableProvider: React.FC<DraggableProviderProps> = ({
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 8, // Require 8px movement before drag starts
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 200, // 200ms delay before touch drag starts (better for scrolling)
+        tolerance: 8, // 8px tolerance for touch movement
       },
     })
   );

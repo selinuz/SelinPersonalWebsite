@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Folder } from "lucide-react";
 import {
@@ -16,7 +16,11 @@ interface FolderIconProps {
   rotation?: number;
 }
 
-export default function FolderIcon({ label, onClick, rotation = 0 }: FolderIconProps) {
+export default function FolderIcon({
+  label,
+  onClick,
+  rotation = 0,
+}: FolderIconProps) {
   return (
     <div
       className={cn(
@@ -26,11 +30,16 @@ export default function FolderIcon({ label, onClick, rotation = 0 }: FolderIconP
         INTERACTIONS.hover.lift
       )}
       onClick={onClick}
-      style={{ transform: `rotate(${rotation}deg)` }}
-    >
+      style={{ transform: `rotate(${rotation}deg)` }}>
       <div className={cn("flex flex-col items-center pt-2", SPACING.gap.sm)}>
-        <Folder className={cn(SIZING.icon.md, COLORS.icons.folder, "drop-shadow-lg")} />
-        <p className={cn(TYPOGRAPHY.presets.label, "text-center drop-shadow-sm")}>
+        <Folder
+          className={cn(SIZING.icon.md, COLORS.icons.folder, "drop-shadow-lg")}
+        />
+        <p
+          className={cn(
+            TYPOGRAPHY.presets.label,
+            "text-center drop-shadow-sm sm:text-sm"
+          )}>
           {label}
         </p>
       </div>
