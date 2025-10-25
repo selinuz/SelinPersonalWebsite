@@ -26,7 +26,7 @@ export default function BulletinBoard() {
   const [isMobile, setIsMobile] = useState(false);
   const width = typeof window !== "undefined" ? window.innerWidth : 1200;
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
-  const welcomeNoteWidth = isMobile ? Math.min(width * 0.85, 360) : 448;
+  const welcomeNoteWidth = isMobile ? Math.min(width * 0.7, 300) : 448;
 
   useEffect(() => {
     setIsMounted(true);
@@ -48,21 +48,21 @@ export default function BulletinBoard() {
   const getInitialPositions = () => {
     if (isMobile) {
       return {
-        "polaroid-card": { x: width * 0.05, y: height * 0.45 },
+        "polaroid-card": { x: width * 0.01, y: height * 0.3 },
         "welcome-note": {
           x: (width - welcomeNoteWidth) / 2,
-          y: height * 0.05,
+          y: height * 0.01,
         },
-        "projects-folder": { x: width * 0.15, y: height * 0.72 },
-        "resume-file": { x: width * 0.55, y: height * 0.68 },
+        "projects-folder": { x: width * 0.55, y: height * 0.5 },
+        "resume-file": { x: width * 0.55, y: height * 0.2 },
       };
     }
 
     return {
-      "polaroid-card": { x: width / 8, y: height / 10 },
+      "polaroid-card": { x: width * 0.15, y: height * 0.1 },
       "welcome-note": {
         x: (width - welcomeNoteWidth) / 2,
-        y: height / 20,
+        y: height * 0.05,
       },
       "projects-folder": { x: width / 1.7, y: height / 3 },
       "resume-file": { x: width / 2.7, y: height / 3 },
