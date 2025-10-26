@@ -5,11 +5,10 @@ import FolderIcon from "./FolderIcon";
 import FileIcon from "./FileIcon";
 import ProjectDialog from "./ProjectDialog";
 import PolaroidCard from "./PolaroidCard";
-import ProjectCard from "./ProjectCard";
+import ProjectsContainer from "./ProjectsContainer";
 import { ThemeToggle } from "./ThemeToggle";
 import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
-import { projects } from "@/data/projects";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -27,21 +26,7 @@ export default function BulletinBoard() {
   const [aboutMeOpen, setAboutMeOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [expandedProjects, setExpandedProjects] = useState<Set<string>>(
-    new Set()
-  );
 
-  const toggleExpanded = (id: string) => {
-    setExpandedProjects((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
   const width = typeof window !== "undefined" ? window.innerWidth : 1200;
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
   const welcomeNoteWidth = isMobile ? Math.min(width * 0.7, 300) : 448;
@@ -288,16 +273,7 @@ export default function BulletinBoard() {
           onOpenChange={setProjectsOpen}
           title="My Projects"
           description="Check out some of my work">
-          <div className="space-y-4">
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                expanded={expandedProjects.has(project.id)}
-                toggleExpanded={toggleExpanded}
-              />
-            ))}
-          </div>
+          <ProjectsContainer />
         </ProjectDialog>
 
         <ProjectDialog

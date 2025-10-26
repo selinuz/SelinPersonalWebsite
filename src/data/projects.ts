@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   subtitle?: string;
   duration: string;
+  startDate: string; // Format: YYYY-MM for sorting
   description: string;
   detailsTitle?: string;
   details: string[];
@@ -18,6 +19,7 @@ export const projects: Project[] = [
     title: "Personal Website",
     subtitle: "(this)",
     duration: "December 2024 – now",
+    startDate: "2024-12",
     description:
       "Built a fully responsive, interactive personal portfolio website showcasing my projects, values, and contact details.",
     detailsTitle: "Features:",
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     title: "Feral Freedom",
     subtitle: "(Video Game)",
     duration: "September 2024 – December 2024",
+    startDate: "2024-09",
     description:
       "Collaborated with a team of six to develop a 2D pixel-art survival game featuring AI-driven patrols, Undertale-style encounters, and resource collection mechanics.",
     detailsTitle: "Personal Contributions:",
@@ -54,8 +57,9 @@ export const projects: Project[] = [
     title: "PLUMAGE",
     subtitle: "(Hackathon Project)",
     duration: "April 6–7, 2024",
+    startDate: "2024-04",
     description:
-      "With the data provided by Arc’teryx, we created a website in 24 hours where users can access personal sizing technology, AI-powered color analysis, and 3D garment visualization for virtual try-ons.",
+      "With the data provided by Arc'teryx, we created a website in 24 hours where users can access personal sizing technology, AI-powered color analysis, and 3D garment visualization for virtual try-ons.",
     detailsTitle: "Personal Contributions:",
     details: [
       "Implemented sign-up, login, and landing pages frontend using React and JavaScript.",
@@ -70,6 +74,7 @@ export const projects: Project[] = [
     id: "4",
     title: "Pocket Pelvis: AR Birth Animation",
     duration: "January 2024 – April 2024",
+    startDate: "2024-01",
     description:
       "Pocket Pelvis is an AR app that enhances the 3D visualization of the complex anatomy of the human pelvis. Our team worked to integrate a birth animation into the existing application, along with implementing image recognition in AR mode with a physical 3D printed pelvis model.",
     detailsTitle: "Personal Contributions:",
@@ -86,6 +91,7 @@ export const projects: Project[] = [
     id: "5",
     title: "Project Buddies",
     duration: "July 2023 – August 2023",
+    startDate: "2023-07",
     description:
       "Developed a web-based collaboration platform for IT projects with HTML5, CSS, and JavaScript for frontend, PHP with CodeIgniter for backend, and SQL/MySQL for database management.",
     detailsTitle: "Personal Contributions:",
@@ -104,6 +110,7 @@ export const projects: Project[] = [
     title: "CampusBuddy ",
     subtitle: "(RAG Chatbot)",
     duration: "May 2025 – Present",
+    startDate: "2025-05",
     description:
       "Designed and built a Retrieval-Augmented Generation (RAG) chatbot to simplify access to UBC academic information",
     detailsTitle: "Personal Contributions:",
