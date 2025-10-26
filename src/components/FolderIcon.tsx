@@ -33,7 +33,7 @@ export default function FolderIcon({
       style={{ transform: `rotate(${rotation}deg)` }}>
       <div className={cn("flex flex-col items-center pt-2", SPACING.gap.sm)}>
         <Folder
-          className={cn(SIZING.icon.md, COLORS.icons.folder, "drop-shadow-lg")}
+          className={cn(SIZING.icon.sm, COLORS.icons.folder, "drop-shadow-lg")}
         />
         <p
           className={cn(

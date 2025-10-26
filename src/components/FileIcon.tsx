@@ -49,7 +49,7 @@ export default function FileIcon({
       style={{ transform: `rotate(${rotation}deg)` }}>
       <div className={cn("flex flex-col items-center pt-2", SPACING.gap.sm)}>
         <FileText
-          className={cn(SIZING.icon.md, getFileColor(), "drop-shadow-lg")}
+          className={cn(SIZING.icon.sm, getFileColor(), "drop-shadow-lg")}
         />
         <div className={cn("flex flex-col items-center", SPACING.gap.xs)}>
           <p

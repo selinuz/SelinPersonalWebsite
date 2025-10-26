@@ -5,9 +5,11 @@ import FolderIcon from "./FolderIcon";
 import FileIcon from "./FileIcon";
 import ProjectDialog from "./ProjectDialog";
 import PolaroidCard from "./PolaroidCard";
+import ProjectCard from "./ProjectCard";
 import { ThemeToggle } from "./ThemeToggle";
 import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
+import { projects } from "@/data/projects";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -24,6 +26,21 @@ export default function BulletinBoard() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [expandedProjects, setExpandedProjects] = useState<Set<string>>(
+    new Set()
+  );
+
+  const toggleExpanded = (id: string) => {
+    setExpandedProjects((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
   const width = typeof window !== "undefined" ? window.innerWidth : 1200;
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
   const welcomeNoteWidth = isMobile ? Math.min(width * 0.7, 300) : 448;
@@ -123,7 +140,7 @@ export default function BulletinBoard() {
             </h1>
             <p className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
               {
-                "This is my digital board, and a combination of how my brain and desktop looks like. Click on the icons below to explore more!"
+                "This is my digital board, a mix of how my brain and desktop look. Click on the icons below to explore more!"
               }
             </p>
           </div>
@@ -231,7 +248,7 @@ export default function BulletinBoard() {
                 <p
                   className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
                   {
-                    "This is my digital board, and a combination of how my brain and desktop looks like. Click on the icons below to explore more!"
+                    "This is my digital board, a mix of how my brain and desktop look. Click on the icons below to explore more!"
                   }
                 </p>
               </div>
@@ -267,12 +284,17 @@ export default function BulletinBoard() {
           open={projectsOpen}
           onOpenChange={setProjectsOpen}
           title="My Projects"
-          description="Check out some of my work"
-          tags={["React", "Next.js", "TypeScript"]}>
-          <p className={TYPOGRAPHY.fontFamily.mono}>
-            Here you can showcase your projects! Add project cards, links, or
-            descriptions here.
-          </p>
+          description="Check out some of my work">
+          <div className="space-y-4">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                expanded={expandedProjects.has(project.id)}
+                toggleExpanded={toggleExpanded}
+              />
+            ))}
+          </div>
         </ProjectDialog>
 
         <ProjectDialog
