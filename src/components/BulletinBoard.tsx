@@ -9,6 +9,7 @@ import ProjectsContainer from "./ProjectsContainer";
 import { ThemeToggle } from "./ThemeToggle";
 import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
+import { SocialPinsGroup } from "./SocialPins";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -58,6 +59,7 @@ export default function BulletinBoard() {
         },
         "projects-folder": { x: width * 0.55, y: height * 0.5 },
         "resume-file": { x: width * 0.55, y: height * 0.2 },
+        "social-pins": { x: width * 0.02, y: height * 0.3 },
       };
     }
 
@@ -69,6 +71,7 @@ export default function BulletinBoard() {
       },
       "projects-folder": { x: width / 1.7, y: height / 3 },
       "resume-file": { x: width / 2.7, y: height / 3 },
+      "social-pins": { x: width * 0.05, y: height * 0.1 },
     };
   };
 
@@ -262,6 +265,17 @@ export default function BulletinBoard() {
                 fileType="pdf"
                 rotation={1}
                 onClick={() => setResumeOpen(true)}
+              />
+            </div>
+          </Draggable>
+
+          {/* Social Media Pins - Left side near polaroid */}
+          <Draggable id="social-pins">
+            <div className="absolute">
+              <SocialPinsGroup
+                email="eceselinuz2@gmail.com"
+                github="https://github.com/selinuz"
+                linkedin="https://linkedin.com/in/selin-uz"
               />
             </div>
           </Draggable>
