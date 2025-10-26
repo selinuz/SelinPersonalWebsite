@@ -24,6 +24,7 @@ import {
 export default function BulletinBoard() {
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [aboutMeOpen, setAboutMeOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(
@@ -174,6 +175,7 @@ export default function BulletinBoard() {
                 caption="Hi, I am Selin!"
                 rotation={2}
                 width={isMobile ? 10 : 12}
+                onClick={() => setAboutMeOpen(true)}
               />
             </div>
           </div>
@@ -209,6 +211,7 @@ export default function BulletinBoard() {
                 caption="Hi, I am Selin!"
                 rotation={2}
                 width={isMobile ? 10 : 12}
+                onClick={() => setAboutMeOpen(true)}
               />
             </div>
           </Draggable>
@@ -305,6 +308,40 @@ export default function BulletinBoard() {
           <p className={TYPOGRAPHY.fontFamily.mono}>
             You can embed your resume PDF here or add download links.
           </p>
+        </ProjectDialog>
+
+        <ProjectDialog
+          open={aboutMeOpen}
+          onOpenChange={setAboutMeOpen}
+          title="About Me"
+          description="Get to know me a little better">
+          <div className="space-y-4">
+            <p className={cn(TYPOGRAPHY.presets.body, "text-sm")}>
+              I&apos;m a senior Computer Science student at UBC with a passion
+              for solving problems through creative and critical thinking. I
+              love building meaningful projects, improving processes, and making
+              things more efficient.
+            </p>
+            <p className={cn(TYPOGRAPHY.presets.body, "text-sm")}>
+              I&apos;m honored to have received the{" "}
+              <a
+                href="https://you.ubc.ca/financial-planning/scholarships-awards-international-students/international-scholars/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline">
+                Karen McKellin International Leader of Tomorrow Award
+              </a>
+              , a full-ride scholarship that recognized my academic achievements
+              and leadership potential during high school. This opportunity
+              allowed me to move from my home country, Türkiye, to Canada to
+              pursue my education.
+            </p>
+            <p className={cn(TYPOGRAPHY.presets.body, "text-sm")}>
+              Outside of academics, I like sailing and (try to) spend my summers
+              out on the ocean. I enjoy reading non-fiction like feminist
+              literature and philosophy, and taking pictures with my camera.
+            </p>
+          </div>
         </ProjectDialog>
       </div>
     </DraggableProvider>
