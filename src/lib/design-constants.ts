@@ -165,6 +165,36 @@ export const SIZING = {
 } as const;
 
 // ============================================================================
+// LAYOUT UTILITIES
+// ============================================================================
+
+export const LAYOUT = {
+  // Flexbox utilities
+  flex: {
+    center: "flex items-center justify-center",
+    col: "flex flex-col",
+    colCenter: "flex flex-col items-center justify-center",
+    between: "flex items-center justify-between",
+    start: "flex items-start",
+  },
+
+  // Common positioning
+  position: {
+    absolute: "absolute",
+    relative: "relative",
+    fixed: "fixed",
+    center: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+  },
+
+  // Overflow
+  overflow: {
+    hidden: "overflow-hidden",
+    auto: "overflow-auto",
+    scroll: "overflow-scroll",
+  },
+} as const;
+
+// ============================================================================
 // RESPONSIVE BREAKPOINTS
 // ============================================================================
 
@@ -212,19 +242,30 @@ export const INTERACTIONS = {
     lift: "hover:scale-105 hover:-translate-y-1",
     scale: "hover:scale-105",
     shadow: "hover:shadow-2xl",
+    brightness: "hover:brightness-110",
   },
 
   // Transitions
   transition: {
-    default: "transition-transform",
-    all: "transition-all",
-    colors: "transition-colors",
+    default: "transition-transform duration-300 ease-in-out",
+    all: "transition-all duration-300 ease-in-out",
+    colors: "transition-colors duration-200 ease-in-out",
+    fast: "transition-all duration-150 ease-in-out",
   },
 
   // Cursor styles
   cursor: {
     pointer: "cursor-pointer",
     default: "cursor-default",
+    grab: "cursor-grab",
+    grabbing: "cursor-grabbing",
+  },
+
+  // Animation classes
+  animation: {
+    fadeIn: "animate-in fade-in-0 duration-300",
+    slideIn: "animate-in slide-in-from-top-2 duration-300",
+    fadeOut: "animate-out fade-out-0 duration-200",
   },
 } as const;
 
