@@ -10,6 +10,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
 import { SocialPinsGroup } from "./SocialPins";
+import CoreValues from "./CoreValues";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -60,6 +61,7 @@ export default function BulletinBoard() {
         "projects-folder": { x: width * 0.55, y: height * 0.5 },
         "resume-file": { x: width * 0.55, y: height * 0.2 },
         "social-pins": { x: width * 0.02, y: height * 0.3 },
+        "core-values": { x: width * 0.05, y: height * 0.65 },
       };
     }
 
@@ -69,9 +71,10 @@ export default function BulletinBoard() {
         x: (width - welcomeNoteWidth) / 2,
         y: height * 0.05,
       },
-      "projects-folder": { x: width / 1.7, y: height / 3 },
-      "resume-file": { x: width / 2.7, y: height / 3 },
+      "projects-folder": { x: width / 1.3, y: height / 3 },
+      "resume-file": { x: width / 1.3, y: height / 10 },
       "social-pins": { x: width * 0.05, y: height * 0.1 },
+      "core-values": { x: width * 0.05, y: height * 0.5 },
     };
   };
 
@@ -79,11 +82,7 @@ export default function BulletinBoard() {
 
   if (!isMounted) {
     return (
-      <div
-        className={cn(
-          "relative w-full min-h-screen overflow-x-hidden overflow-y-auto",
-          COLORS.board.gradient
-        )}>
+      <div className={cn("relative w-full", COLORS.board.gradient)}>
         {/* Theme Toggle */}
         <ThemeToggle />
         {/* Cork board texture overlay */}
@@ -129,7 +128,7 @@ export default function BulletinBoard() {
             </h1>
             <p className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
               {
-                "This is my digital board, a mix of how my brain and desktop look. Click on the icons below to explore more!"
+                "This is my digital board, a mix of how my brain and desktop look. Click on the icons to explore more!"
               }
             </p>
           </div>
@@ -167,6 +166,13 @@ export default function BulletinBoard() {
               />
             </div>
           </div>
+
+          {/* Core Values Map - Below grid on first page */}
+          <div className="w-full px-4 sm:px-0 mt-8">
+            <div className={cn(SIZING.container.xl, "mx-auto")}>
+              <CoreValues />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -174,11 +180,7 @@ export default function BulletinBoard() {
 
   return (
     <DraggableProvider initialPositions={initialPositions}>
-      <div
-        className={cn(
-          "relative w-full min-h-screen overflow-x-hidden overflow-y-auto",
-          COLORS.board.gradient
-        )}>
+      <div className={cn("relative w-full", COLORS.board.gradient)}>
         {/* Theme Toggle */}
         <ThemeToggle />
         {/* Cork board texture overlay */}
@@ -239,7 +241,7 @@ export default function BulletinBoard() {
                 <p
                   className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
                   {
-                    "This is my digital board, a mix of how my brain and desktop look. Click on the icons below to explore more!"
+                    "This is my digital board, a mix of how my brain and desktop look. Click on the icons to explore more!"
                   }
                 </p>
               </div>
@@ -277,6 +279,15 @@ export default function BulletinBoard() {
                 github="https://github.com/selinuz"
                 linkedin="https://linkedin.com/in/selin-uz"
               />
+            </div>
+          </Draggable>
+
+          {/* Core Values Map - Positioned on the board */}
+          <Draggable id="core-values">
+            <div
+              className="absolute"
+              style={{ width: isMobile ? "90vw" : "60vw", maxWidth: "900px" }}>
+              <CoreValues />
             </div>
           </Draggable>
         </div>
