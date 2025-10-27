@@ -157,7 +157,7 @@ export const SIZING = {
 
   // Card/Container widths
   container: {
-    sm: "max-w-md",
+    sm: "max-w-xs",
     md: "max-w-2xl",
     lg: "max-w-4xl",
     xl: "max-w-5xl",

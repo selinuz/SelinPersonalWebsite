@@ -15,11 +15,6 @@ interface Position {
   y: number;
 }
 
-interface DraggableItem {
-  id: string;
-  position: Position;
-}
-
 interface DraggableContextType {
   items: Record<string, Position>;
   updateItemPosition: (id: string, position: Position) => void;
@@ -48,7 +43,8 @@ export const DraggableProvider: React.FC<DraggableProviderProps> = ({
   children,
   initialPositions = {},
 }) => {
-  const [items, setItems] = useState<Record<string, Position>>(initialPositions);
+  const [items, setItems] =
+    useState<Record<string, Position>>(initialPositions);
 
   const updateItemPosition = useCallback((id: string, position: Position) => {
     setItems((prev) => ({

@@ -22,7 +22,7 @@ export function SocialPin({ icon, href }: SocialPinProps) {
       rel={icon !== "email" ? "noopener noreferrer" : undefined}
       className={cn(
         "relative flex items-center justify-center",
-        "bg-card rounded-lg p-3",
+        "border bg-card rounded-full p-3",
         COLORS.shadows.lg,
         INTERACTIONS.transition.all,
         INTERACTIONS.hover.lift,
@@ -46,7 +46,7 @@ export function SocialPinsGroup({
   linkedin,
 }: SocialPinsGroupProps) {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-row gap-10 items-center">
       {email && <SocialPin icon="email" href={`mailto:${email}`} />}
       {github && <SocialPin icon="github" href={github} />}
       {linkedin && <SocialPin icon="linkedin" href={linkedin} />}

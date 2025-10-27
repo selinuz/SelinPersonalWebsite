@@ -53,27 +53,27 @@ export default function BulletinBoard() {
   const getInitialPositions = () => {
     if (isMobile) {
       return {
-        "polaroid-card": { x: width * 0.01, y: height * 0.3 },
+        "polaroid-card": { x: width * 0.01, y: height * 0.4 },
         "welcome-note": {
-          x: (width - welcomeNoteWidth) / 2,
+          x: (width - welcomeNoteWidth) / 4,
           y: height * 0.01,
         },
-        "projects-folder": { x: width * 0.55, y: height * 0.5 },
-        "resume-file": { x: width * 0.55, y: height * 0.2 },
-        "social-pins": { x: width * 0.02, y: height * 0.3 },
-        "core-values": { x: width * 0.05, y: height * 0.65 },
+        "projects-folder": { x: width * 0.5, y: height * 0.3 },
+        "resume-file": { x: width * 0.5, y: height * 0.4 },
+        "social-pins": { x: width * 0.1, y: height * 0.07 },
+        "core-values": { x: width * 0.05, y: height * 0.5 },
       };
     }
 
     return {
-      "polaroid-card": { x: width * 0.15, y: height * 0.1 },
+      "polaroid-card": { x: width * 0.05, y: height * 0.05 },
       "welcome-note": {
-        x: (width - welcomeNoteWidth) / 2,
+        x: (width - welcomeNoteWidth) / 3,
         y: height * 0.05,
       },
-      "projects-folder": { x: width / 1.3, y: height / 3 },
-      "resume-file": { x: width / 1.3, y: height / 10 },
-      "social-pins": { x: width * 0.05, y: height * 0.1 },
+      "projects-folder": { x: width / 1.6, y: height / 8 },
+      "resume-file": { x: width / 2, y: height / 8 },
+      "social-pins": { x: width * 0.22, y: height * 0.33 },
       "core-values": { x: width * 0.05, y: height * 0.5 },
     };
   };
@@ -81,101 +81,7 @@ export default function BulletinBoard() {
   const initialPositions = getInitialPositions();
 
   if (!isMounted) {
-    return (
-      <div className={cn("relative w-full", COLORS.board.gradient)}>
-        {/* Theme Toggle */}
-        <ThemeToggle />
-        {/* Cork board texture overlay */}
-        <div
-          className={cn("absolute inset-0", CORK_TEXTURE.opacity)}
-          style={{
-            backgroundImage: CORK_TEXTURE.pattern,
-          }}></div>
-
-        {/* Main content area */}
-        <div
-          className={cn(
-            "relative z-10 flex flex-col items-center min-h-screen p-4 sm:p-8"
-          )}>
-          {/* Welcome note - pinned paper style */}
-          <div
-            className={cn(
-              COLORS.paper.white,
-              SPACING.padding.lg,
-              COLORS.shadows["2xl"],
-              PAPER_STYLES.note.rotationClasses,
-              SIZING.container.sm,
-              "mt-4 sm:mt-8 mb-8 sm:mb-12 relative mx-4 sm:mx-0"
-            )}>
-            {/* Push pin for welcome note */}
-            <div
-              className={cn(
-                "absolute left-1/2 -translate-x-1/2 z-10",
-                pushpinStyle.className
-              )}
-              style={{
-                width: pushpinStyle.size,
-                height: pushpinStyle.size,
-                top: `-${pushpinStyle.size}`,
-              }}></div>
-
-            <h1
-              className={cn(
-                TYPOGRAPHY.presets.heading,
-                "mb-4 text-xl sm:text-3xl"
-              )}>
-              Welcome!
-            </h1>
-            <p className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
-              {
-                "This is my digital board, a mix of how my brain and desktop look. Click on the icons to explore more!"
-              }
-            </p>
-          </div>
-
-          {/* Items container */}
-          <div
-            className={cn(
-              "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 w-full px-4 sm:px-0",
-              SPACING.gap.md,
-              SIZING.container.xl
-            )}>
-            {/* Projects Folder */}
-            <FolderIcon
-              label="Projects"
-              rotation={-2}
-              onClick={() => setProjectsOpen(true)}
-            />
-
-            {/* Resume File */}
-            <FileIcon
-              label="Resume"
-              fileType="pdf"
-              rotation={1}
-              onClick={() => setResumeOpen(true)}
-            />
-
-            {/* Polaroid Picture */}
-            <div className="col-span-2 sm:col-span-1 flex justify-center">
-              <PolaroidCard
-                imageSrc="/website_picture.jpeg"
-                caption="Hi, I am Selin!"
-                rotation={2}
-                width={isMobile ? 10 : 12}
-                onClick={() => setAboutMeOpen(true)}
-              />
-            </div>
-          </div>
-
-          {/* Core Values Map - Below grid on first page */}
-          <div className="w-full px-4 sm:px-0 mt-8">
-            <div className={cn(SIZING.container.xl, "mx-auto")}>
-              <CoreValues />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <div className="animate-pulse">Loading...</div>;
   }
 
   return (
@@ -193,7 +99,7 @@ export default function BulletinBoard() {
         {/* Main content area - using absolute positioning */}
         <div
           className={cn("relative z-10 min-h-screen p-4 sm:p-8", "touch-none")}>
-          {/* Polaroid Picture - Left side */}
+          {/* Polaroid Picture */}
           <Draggable id="polaroid-card">
             <div className="absolute">
               <PolaroidCard
@@ -206,7 +112,7 @@ export default function BulletinBoard() {
             </div>
           </Draggable>
 
-          {/* Welcome note - Center */}
+          {/* Welcome note */}
           <Draggable id="welcome-note">
             <div className="absolute">
               <div
@@ -271,7 +177,7 @@ export default function BulletinBoard() {
             </div>
           </Draggable>
 
-          {/* Social Media Pins - Left side near polaroid */}
+          {/* Social Media Pins */}
           <Draggable id="social-pins">
             <div className="absolute">
               <SocialPinsGroup
@@ -282,7 +188,7 @@ export default function BulletinBoard() {
             </div>
           </Draggable>
 
-          {/* Core Values Map - Positioned on the board */}
+          {/* Core Values Map */}
           <Draggable id="core-values">
             <div
               className="absolute"
