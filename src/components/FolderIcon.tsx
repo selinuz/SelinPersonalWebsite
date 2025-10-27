@@ -2,7 +2,6 @@
 
 import { Folder } from "lucide-react";
 import {
-  COLORS,
   INTERACTIONS,
   SIZING,
   SPACING,
@@ -14,12 +13,14 @@ interface FolderIconProps {
   label: string;
   onClick?: () => void;
   rotation?: number;
+  COLORS?: string;
 }
 
 export default function FolderIcon({
   label,
   onClick,
   rotation = 0,
+  COLORS,
 }: FolderIconProps) {
   return (
     <div
@@ -32,9 +33,7 @@ export default function FolderIcon({
       onClick={onClick}
       style={{ transform: `rotate(${rotation}deg)` }}>
       <div className={cn("flex flex-col items-center pt-2", SPACING.gap.sm)}>
-        <Folder
-          className={cn(SIZING.icon.sm, COLORS.icons.folder, "drop-shadow-lg")}
-        />
+        <Folder className={cn(SIZING.icon.sm, COLORS, "drop-shadow-lg")} />
         <p
           className={cn(
             TYPOGRAPHY.presets.label,

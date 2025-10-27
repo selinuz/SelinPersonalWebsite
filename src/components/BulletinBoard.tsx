@@ -6,6 +6,7 @@ import FileIcon from "./FileIcon";
 import ProjectDialog from "./ProjectDialog";
 import PolaroidCard from "./PolaroidCard";
 import ProjectsContainer from "./ProjectsContainer";
+import WorkExperienceContainer from "./WorkExperienceContainer";
 import { ThemeToggle } from "./ThemeToggle";
 import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
@@ -26,6 +27,7 @@ export default function BulletinBoard() {
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [aboutMeOpen, setAboutMeOpen] = useState(false);
+  const [workExperienceOpen, setWorkExperienceOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -59,6 +61,7 @@ export default function BulletinBoard() {
           y: height * 0.01,
         },
         "projects-folder": { x: width * 0.5, y: height * 0.3 },
+        "work-experience-folder": { x: width * 0.1, y: height * 0.3 },
         "resume-file": { x: width * 0.5, y: height * 0.4 },
         "social-pins": { x: width * 0.1, y: height * 0.07 },
         "core-values": { x: width * 0.05, y: height * 0.5 },
@@ -71,8 +74,9 @@ export default function BulletinBoard() {
         x: (width - welcomeNoteWidth) / 3,
         y: height * 0.05,
       },
-      "projects-folder": { x: width / 1.6, y: height / 8 },
-      "resume-file": { x: width / 2, y: height / 8 },
+      "projects-folder": { x: width * 0.63, y: height * 0.1 },
+      "work-experience-folder": { x: width * 0.55, y: height * 0.3 },
+      "resume-file": { x: width * 0.5, y: height * 0.1 },
       "social-pins": { x: width * 0.24, y: height * 0.34 },
       "core-values": { x: width * 0.05, y: height * 0.45 },
     };
@@ -154,23 +158,35 @@ export default function BulletinBoard() {
             </div>
           </Draggable>
 
-          {/* Projects Folder - Below welcome message */}
+          {/* Projects Folder */}
           <Draggable id="projects-folder">
             <div className="absolute">
               <FolderIcon
                 label="Projects"
                 rotation={-2}
                 onClick={() => setProjectsOpen(true)}
+                COLORS={COLORS.icons.folder}
               />
             </div>
           </Draggable>
 
-          {/* Resume File - Next to projects */}
+          {/* Work Experience Folder */}
+          <Draggable id="work-experience-folder">
+            <div className="absolute">
+              <FolderIcon
+                label="Work Experience"
+                rotation={3}
+                onClick={() => setWorkExperienceOpen(true)}
+                COLORS={COLORS.icons.folder2}
+              />
+            </div>
+          </Draggable>
+
+          {/* Resume File */}
           <Draggable id="resume-file">
             <div className="absolute">
               <FileIcon
                 label="Resume"
-                fileType="pdf"
                 rotation={1}
                 onClick={() => setResumeOpen(true)}
               />
@@ -262,6 +278,14 @@ export default function BulletinBoard() {
               literature and philosophy, and taking pictures with my camera.
             </p>
           </div>
+        </ProjectDialog>
+
+        <ProjectDialog
+          open={workExperienceOpen}
+          onOpenChange={setWorkExperienceOpen}
+          title="Work Experience"
+          description="My professional journey">
+          <WorkExperienceContainer />
         </ProjectDialog>
       </div>
     </DraggableProvider>
