@@ -148,7 +148,7 @@ export default function ConnectionLines({
       });
 
       if (hasElements) {
-        handleDraw();
+        setTimeout(handleDraw, 250);
       } else if (retryCount < maxRetries) {
         retryCount++;
         setTimeout(attemptDraw, retryDelay);
