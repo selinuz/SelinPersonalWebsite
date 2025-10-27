@@ -212,9 +212,22 @@ export default function BulletinBoard() {
           onOpenChange={setResumeOpen}
           title="Resume"
           description="My experience and qualifications">
-          <p className={TYPOGRAPHY.fontFamily.mono}>
-            You can embed your resume PDF here or add download links.
-          </p>
+          <div className="space-y-4">
+            <iframe
+              src="/SelinUz_Resume.pdf"
+              className="w-full h-[600px] border-2 border-gray-300 rounded-lg"
+              title="Selin Uz Resume"
+            />
+            <a
+              href="/SelinUz_Resume.pdf"
+              download
+              className={cn(
+                TYPOGRAPHY.presets.body,
+                "inline-block text-blue-600 hover:text-blue-800 underline text-sm"
+              )}>
+              Download Resume
+            </a>
+          </div>
         </ProjectDialog>
 
         <ProjectDialog
