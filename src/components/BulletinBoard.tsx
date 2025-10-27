@@ -73,7 +73,7 @@ export default function BulletinBoard() {
       },
       "projects-folder": { x: width / 1.6, y: height / 8 },
       "resume-file": { x: width / 2, y: height / 8 },
-      "social-pins": { x: width * 0.22, y: height * 0.33 },
+      "social-pins": { x: width * 0.24, y: height * 0.34 },
       "core-values": { x: width * 0.05, y: height * 0.45 },
     };
   };
@@ -105,7 +105,7 @@ export default function BulletinBoard() {
               <PolaroidCard
                 imageSrc="/website_picture.jpeg"
                 caption="Hi, I am Selin!"
-                rotation={2}
+                rotation={-5}
                 width={isMobile ? 10 : 12}
                 onClick={() => setAboutMeOpen(true)}
               />
@@ -192,7 +192,7 @@ export default function BulletinBoard() {
           <Draggable id="core-values">
             <div
               className="absolute"
-              style={{ width: isMobile ? "90vw" : "60vw", maxWidth: "900px" }}>
+              style={{ width: isMobile ? "90vw" : "60vw", maxWidth: "800px" }}>
               <CoreValues />
             </div>
           </Draggable>
