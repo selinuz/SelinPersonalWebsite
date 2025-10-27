@@ -60,6 +60,10 @@ export default function BulletinBoard() {
           x: (width - welcomeNoteWidth) / 4,
           y: height * 0.01,
         },
+        "whats-next-note": {
+          x: width * 0.55,
+          y: height * 0.01,
+        },
         "projects-folder": { x: width * 0.5, y: height * 0.3 },
         "work-experience-folder": { x: width * 0.1, y: height * 0.3 },
         "resume-file": { x: width * 0.5, y: height * 0.4 },
@@ -72,6 +76,10 @@ export default function BulletinBoard() {
       "polaroid-card": { x: width * 0.05, y: height * 0.05 },
       "welcome-note": {
         x: (width - welcomeNoteWidth) / 3,
+        y: height * 0.05,
+      },
+      "whats-next-note": {
+        x: width * 0.72,
         y: height * 0.05,
       },
       "projects-folder": { x: width * 0.63, y: height * 0.1 },
@@ -90,7 +98,7 @@ export default function BulletinBoard() {
 
   return (
     <DraggableProvider initialPositions={initialPositions}>
-      <div className={cn("relative w-full", COLORS.board.gradient)}>
+      <div className={cn("relative w-full overflow-x-hidden overflow-y-auto", COLORS.board.gradient)}>
         {/* Theme Toggle */}
         <ThemeToggle />
         {/* Cork board texture overlay */}
@@ -152,6 +160,48 @@ export default function BulletinBoard() {
                   className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
                   {
                     "This is my digital board, a mix of how my brain and desktop look. Click on the icons to explore more!"
+                  }
+                </p>
+              </div>
+            </div>
+          </Draggable>
+
+          {/* What is next note */}
+          <Draggable id="whats-next-note">
+            <div className="absolute">
+              <div
+                className={cn(
+                  COLORS.paper.white,
+                  SPACING.padding.lg,
+                  COLORS.shadows["2xl"],
+                  "transform -rotate-2",
+                  SIZING.container.sm,
+                  "relative"
+                )}
+                style={{ width: isMobile ? `${welcomeNoteWidth}px` : "auto" }}>
+                {/* Push pin for what's next note */}
+                <div
+                  className={cn(
+                    "absolute left-1/2 -translate-x-1/2 z-10",
+                    pushpinStyle.className
+                  )}
+                  style={{
+                    width: pushpinStyle.size,
+                    height: pushpinStyle.size,
+                    top: `-${pushpinStyle.size}`,
+                  }}></div>
+
+                <h1
+                  className={cn(
+                    TYPOGRAPHY.presets.heading,
+                    "mb-4 text-xl sm:text-2xl"
+                  )}>
+                  What is next?
+                </h1>
+                <p
+                  className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
+                  {
+                    "I am graduating in May 2026 and looking for work opportunities in Europe, specifically in the Netherlands in Product or Project Management."
                   }
                 </p>
               </div>
