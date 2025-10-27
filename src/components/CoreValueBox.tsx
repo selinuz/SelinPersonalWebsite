@@ -44,7 +44,7 @@ export default function CoreValueBox({
         <h3 className={cn(TYPOGRAPHY.fontSize.xs, "m-0")}>{label}</h3>
       </div>
       {expanded && (
-        <p className={cn(TYPOGRAPHY.fontSize.xs, "mt-1 leading-tight")}>
+        <p className="text-[0.65rem] mt-1 leading-tight">
           {definition}
         </p>
       )}

@@ -48,7 +48,7 @@ export default function ActivityBox({
       <p className={cn(TYPOGRAPHY.fontSize.xs, "italic")}>{location}</p>
       <p className={cn(TYPOGRAPHY.fontSize.xs)}>{duration}</p>
       {isSelected && description && (
-        <p className={cn(TYPOGRAPHY.fontSize.xs, "text-left mt-2 leading-tight")}>
+        <p className="text-[0.65rem] text-left mt-2 leading-tight">
           {description}
         </p>
       )}

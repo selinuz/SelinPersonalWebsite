@@ -74,7 +74,7 @@ export default function BulletinBoard() {
       "projects-folder": { x: width / 1.6, y: height / 8 },
       "resume-file": { x: width / 2, y: height / 8 },
       "social-pins": { x: width * 0.22, y: height * 0.33 },
-      "core-values": { x: width * 0.05, y: height * 0.5 },
+      "core-values": { x: width * 0.05, y: height * 0.45 },
     };
   };
 

@@ -2,6 +2,17 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { connections } from "../data/core-values";
 
+// Simple circular push pin (matching bulletin board style)
+const createPushPin = (x: number, y: number, isHighlighted: boolean) => {
+  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttribute("cx", x.toString());
+  circle.setAttribute("cy", y.toString());
+  circle.setAttribute("r", "6");
+  circle.setAttribute("fill", isHighlighted ? "#DC2626" : "#B91C1C");
+  circle.style.filter = "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))";
+  return circle;
+};
+
 export default function ConnectionLines({
   selectedActivityId,
   zoom,
@@ -27,9 +38,18 @@ export default function ConnectionLines({
       const toBox = toEl.getBoundingClientRect();
 
       const x1 = fromBox.left + fromBox.width / 2 - svgRect.left;
-      const y1 = fromBox.top + fromBox.height / 2 - svgRect.top;
+      let y1 = fromBox.top + fromBox.height / 2 - svgRect.top;
       const x2 = toBox.left + toBox.width / 2 - svgRect.left;
       const y2 = toBox.top + toBox.height / 2 - svgRect.top;
+
+      // Adjust y1 based on whether the target is above or below
+      if (y2 > y1) {
+        // Target is below, connect from bottom edge of fromBox
+        y1 = fromBox.bottom - svgRect.top;
+      } else {
+        // Target is above, connect from top edge of fromBox
+        y1 = fromBox.top - svgRect.top;
+      }
 
       const lineId = `${from}-${to}`;
       const isHighlighted =
@@ -93,11 +113,14 @@ export default function ConnectionLines({
       path.style.touchAction = "manipulation";
       svg.appendChild(path);
 
+      // Add push pins at connection points
+      const startPin = createPushPin(x1, y1, isHighlighted || isSelected);
+      const endPin = createPushPin(x2, y2, isHighlighted || isSelected);
+      svg.appendChild(startPin);
+      svg.appendChild(endPin);
+
       // Line label (only visible when selected)
       if (text) {
-        const midX = (x1 + x2) / 2;
-        const midY = (y1 + y2) / 2;
-
         const foreignObject = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "foreignObject"
@@ -114,8 +137,10 @@ export default function ConnectionLines({
         const div = document.createElement("div");
         div.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
         div.className =
-          "bg-card text-foreground p-3 rounded-md text-sm text-center shadow-lg";
-        div.style.lineHeight = "1.3";
+          "bg-card text-background rounded-xs p-1 text-center shadow-lg";
+        div.style.fontSize = "0.6rem";
+        div.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+        div.style.lineHeight = "1";
         div.style.pointerEvents = "auto";
         div.innerHTML = text.replace(/\n/g, "<br />");
 
