@@ -12,6 +12,7 @@ import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
 import { SocialPinsGroup } from "./SocialPins";
 import CoreValues from "./CoreValues";
+import SpotifyPlayer from "./SpotifyPlayer";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -69,6 +70,7 @@ export default function BulletinBoard() {
         "resume-file": { x: width * 0.5, y: height * 0.4 },
         "social-pins": { x: width * 0.1, y: height * 0.07 },
         "core-values": { x: width * 0.05, y: height * 0.5 },
+        "spotify-player": { x: width * 0.05, y: height * 0.9 },
       };
     }
 
@@ -79,14 +81,15 @@ export default function BulletinBoard() {
         y: height * 0.05,
       },
       "whats-next-note": {
-        x: width * 0.72,
-        y: height * 0.05,
+        x: width * 0.7,
+        y: height * 0.45,
       },
-      "projects-folder": { x: width * 0.63, y: height * 0.1 },
-      "work-experience-folder": { x: width * 0.55, y: height * 0.3 },
+      "projects-folder": { x: width * 0.6, y: height * 0.1 },
+      "work-experience-folder": { x: width * 0.52, y: height * 0.3 },
       "resume-file": { x: width * 0.5, y: height * 0.1 },
       "social-pins": { x: width * 0.24, y: height * 0.34 },
       "core-values": { x: width * 0.05, y: height * 0.45 },
+      "spotify-player": { x: width * 0.7, y: height * 0.05 },
     };
   };
 
@@ -98,7 +101,11 @@ export default function BulletinBoard() {
 
   return (
     <DraggableProvider initialPositions={initialPositions}>
-      <div className={cn("relative w-full overflow-x-hidden overflow-y-auto", COLORS.board.gradient)}>
+      <div
+        className={cn(
+          "relative w-full overflow-x-hidden overflow-y-auto",
+          COLORS.board.gradient
+        )}>
         {/* Theme Toggle */}
         <ThemeToggle />
         {/* Cork board texture overlay */}
@@ -174,7 +181,7 @@ export default function BulletinBoard() {
                   COLORS.paper.white,
                   SPACING.padding.lg,
                   COLORS.shadows["2xl"],
-                  "transform -rotate-2",
+                  "transform rotate-3",
                   SIZING.container.sm,
                   "relative"
                 )}
@@ -260,6 +267,19 @@ export default function BulletinBoard() {
               className="absolute"
               style={{ width: isMobile ? "90vw" : "60vw", maxWidth: "800px" }}>
               <CoreValues />
+            </div>
+          </Draggable>
+
+          {/* Spotify Player */}
+          <Draggable id="spotify-player">
+            <div className="absolute">
+              <SpotifyPlayer
+                playlistId="6VHIyDbHHeokuob3F9BbST"
+                width={300}
+                height={200}
+                isMobile={isMobile}
+                theme={0}
+              />
             </div>
           </Draggable>
         </div>

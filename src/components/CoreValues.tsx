@@ -2,7 +2,13 @@
 import { useState } from "react";
 import MapCanvas from "./MapCanvas";
 import ZoomControls from "./ZoomControls";
-import { cn, TYPOGRAPHY, COLORS, SPACING, getPushpinStyle } from "@/lib/design-constants";
+import {
+  cn,
+  TYPOGRAPHY,
+  COLORS,
+  SPACING,
+  getPushpinStyle,
+} from "@/lib/design-constants";
 
 export default function CoreValues() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -34,14 +40,14 @@ export default function CoreValues() {
         {/* Connected title and map container */}
         <div className="w-full">
           {/* Pinned paper style title - connected to map */}
-          <div className={cn(
-            "relative",
-            COLORS.paper.white,
-            SPACING.padding.sm,
-            COLORS.shadows.lg,
-            "transform rotate-1",
-            "rounded-t-lg"
-          )}>
+          <div
+            className={cn(
+              "relative",
+              COLORS.paper.white,
+              SPACING.padding.sm,
+              COLORS.shadows.lg,
+              "rounded-t-lg"
+            )}>
             {/* Push pin */}
             <div
               className={cn(
@@ -56,7 +62,11 @@ export default function CoreValues() {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center flex-1 justify-center">
-                <h2 className={cn(TYPOGRAPHY.presets.subheading, "text-base sm:text-lg")}>
+                <h2
+                  className={cn(
+                    TYPOGRAPHY.presets.subheading,
+                    "text-base sm:text-lg"
+                  )}>
                   Values in Action
                 </h2>
                 <button
@@ -82,7 +92,12 @@ export default function CoreValues() {
           </div>
 
           {/* Map Canvas - connected via border-t-0 */}
-          <div className={cn(COLORS.paper.white, "border-t-0 rounded-b-lg", COLORS.shadows.xl)}>
+          <div
+            className={cn(
+              COLORS.paper.white,
+              "border-t-0 rounded-b-lg",
+              COLORS.shadows.xl
+            )}>
             <MapCanvas zoom={zoom} setZoom={setZoom} />
           </div>
         </div>

@@ -4,7 +4,10 @@ import { connections } from "../data/core-values";
 
 // Simple circular push pin (matching bulletin board style)
 const createPushPin = (x: number, y: number, isHighlighted: boolean) => {
-  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  const circle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle"
+  );
   circle.setAttribute("cx", x.toString());
   circle.setAttribute("cy", y.toString());
   circle.setAttribute("r", "6");
@@ -127,8 +130,6 @@ export default function ConnectionLines({
         );
         foreignObject.setAttribute("x", (midX - 100).toString());
         foreignObject.setAttribute("y", (midY - 30).toString());
-        foreignObject.setAttribute("width", "200");
-        foreignObject.setAttribute("height", "100");
         foreignObject.setAttribute("data-line-id", lineId);
         if (!isSelected) {
           foreignObject.setAttribute("visibility", "hidden");
