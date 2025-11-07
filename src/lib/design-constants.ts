@@ -99,7 +99,7 @@ export const COLORS = {
   // Icon colors
   icons: {
     folder: "text-primary",
-    folder2: "text-pop-green",
+    work: "text-pop-green",
     pdfFile: "text-destructive",
   },
 

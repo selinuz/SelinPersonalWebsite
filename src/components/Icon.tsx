@@ -1,6 +1,6 @@
 "use client";
 
-import { Folder } from "lucide-react";
+import { Folder, Briefcase, FileText, LucideIcon } from "lucide-react";
 import {
   INTERACTIONS,
   SIZING,
@@ -9,19 +9,29 @@ import {
   cn,
 } from "@/lib/design-constants";
 
-interface FolderIconProps {
+interface IconProps {
   label: string;
   onClick?: () => void;
   rotation?: number;
-  COLORS?: string;
+  color?: string;
+  type: "folder" | "briefcase" | "file";
 }
 
-export default function FolderIcon({
+const iconMap: Record<IconProps["type"], LucideIcon> = {
+  folder: Folder,
+  briefcase: Briefcase,
+  file: FileText,
+};
+
+export default function Icon({
   label,
   onClick,
   rotation = 0,
-  COLORS,
-}: FolderIconProps) {
+  color,
+  type,
+}: IconProps) {
+  const IconComponent = iconMap[type];
+
   return (
     <div
       className={cn(
@@ -33,7 +43,7 @@ export default function FolderIcon({
       onClick={onClick}
       style={{ transform: `rotate(${rotation}deg)` }}>
       <div className={cn("flex flex-col items-center pt-2", SPACING.gap.sm)}>
-        <Folder className={cn(SIZING.icon.sm, COLORS, "drop-shadow-lg")} />
+        <IconComponent className={cn(SIZING.icon.sm, color, "drop-shadow-lg")} />
         <p
           className={cn(
             TYPOGRAPHY.presets.label,

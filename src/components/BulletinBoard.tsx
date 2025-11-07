@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import FolderIcon from "./FolderIcon";
-import FileIcon from "./FileIcon";
+import Icon from "./Icon";
 import ProjectDialog from "./ProjectDialog";
 import PolaroidCard from "./PolaroidCard";
 import ProjectsContainer from "./ProjectsContainer";
@@ -218,11 +217,12 @@ export default function BulletinBoard() {
           {/* Projects Folder */}
           <Draggable id="projects-folder">
             <div className="absolute">
-              <FolderIcon
+              <Icon
                 label="Projects"
                 rotation={-2}
                 onClick={() => setProjectsOpen(true)}
-                COLORS={COLORS.icons.folder}
+                color={COLORS.icons.folder}
+                type="folder"
               />
             </div>
           </Draggable>
@@ -230,11 +230,12 @@ export default function BulletinBoard() {
           {/* Work Experience Folder */}
           <Draggable id="work-experience-folder">
             <div className="absolute">
-              <FolderIcon
+              <Icon
                 label="Work Experience"
                 rotation={3}
                 onClick={() => setWorkExperienceOpen(true)}
-                COLORS={COLORS.icons.folder2}
+                color={COLORS.icons.work}
+                type="briefcase"
               />
             </div>
           </Draggable>
@@ -242,10 +243,12 @@ export default function BulletinBoard() {
           {/* Resume File */}
           <Draggable id="resume-file">
             <div className="absolute">
-              <FileIcon
+              <Icon
                 label="Resume"
                 rotation={1}
                 onClick={() => setResumeOpen(true)}
+                color={COLORS.icons.pdfFile}
+                type="file"
               />
             </div>
           </Draggable>
@@ -262,6 +265,7 @@ export default function BulletinBoard() {
           </Draggable>
 
           {/* Core Values Map */}
+          {/*
           <Draggable id="core-values">
             <div
               className="absolute"
@@ -269,6 +273,7 @@ export default function BulletinBoard() {
               <CoreValues />
             </div>
           </Draggable>
+          */}
 
           {/* Spotify Player */}
           <Draggable id="spotify-player">
