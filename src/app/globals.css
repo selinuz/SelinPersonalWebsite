@@ -38,6 +38,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-pop-green: var(--pop-green);
+  --color-pop-blue: var(--pop-blue);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -67,6 +68,7 @@ body {
   --accent-foreground: oklch(0.98 0.01 280);
   --destructive: oklch(0.577 0.245 27.325);
   --pop-green: oklch(0.7 0.25 140);
+  --pop-blue: oklch(57.385% 0.16213 249.932);
   --border: oklch(0.88 0.04 275); /* subtle purple border */
   --input: oklch(0.92 0.03 275);
   --ring: oklch(0.6 0.14 280); /* purple focus ring */
@@ -103,6 +105,7 @@ body {
   --accent-foreground: oklch(0.95 0.02 280);
   --destructive: oklch(0.704 0.191 22.216);
   --pop-green: oklch(0.8 0.25 140);
+  --pop-blue: oklch(82.537% 0.1452 214.121);
   --border: oklch(0.3 0.06 275);
   --input: oklch(0.25 0.05 270);
   --ring: oklch(0.6 0.16 280);

@@ -101,6 +101,7 @@ export const COLORS = {
     folder: "text-primary",
     work: "text-pop-green",
     pdfFile: "text-destructive",
+    photography: "text-pop-blue",
   },
 
   // Shadow colors
