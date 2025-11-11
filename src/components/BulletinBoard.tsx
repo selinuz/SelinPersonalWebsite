@@ -87,9 +87,9 @@ export default function BulletinBoard() {
         y: height * 0.45,
       },
       "projects-folder": { x: width * 0.6, y: height * 0.1 },
-      "work-experience-folder": { x: width * 0.6, y: height * 0.3 },
+      "work-experience-folder": { x: width * 0.58, y: height * 0.3 },
       "resume-file": { x: width * 0.5, y: height * 0.1 },
-      "photography-icon": { x: width * 0.5, y: height * 0.3 },
+      "photography-icon": { x: width * 0.48, y: height * 0.3 },
       "social-pins": { x: width * 0.24, y: height * 0.34 },
       "core-values": { x: width * 0.05, y: height * 0.45 },
       "spotify-player": { x: width * 0.7, y: height * 0.05 },
@@ -384,7 +384,7 @@ export default function BulletinBoard() {
           open={photographyOpen}
           onOpenChange={setPhotographyOpen}
           title="Photography"
-          description="My photography work"
+          description="Taken with Fujifilm X-S20 with XC 15-45mm f/3.5-5.6 lens"
           size="wide">
           <PhotographyGallery
             sections={[
@@ -413,12 +413,18 @@ export default function BulletinBoard() {
                   {
                     src: "/photos/other/DSCF1376.jpg",
                     rotation: 0,
-                    scale: 1.5,
+                    scale: 1.8,
                   },
                   {
                     src: "/photos/other/DSCF1872.jpg",
+                    rotation: 2,
+                    scale: 1.6,
+                  },
+
+                  {
+                    src: "/photos/other/DSCF1077.jpg",
                     rotation: -3,
-                    scale: 1.5,
+                    scale: 1.6,
                   },
                 ],
               },
@@ -482,12 +488,12 @@ export default function BulletinBoard() {
                     scale: 1.3,
                   },
                   {
-                    src: "/photos/halloween/DSCF2187.jpg",
+                    src: "/photos/halloween/DSCF2188.jpg",
                     rotation: -3,
                     scale: 1,
                   },
                   {
-                    src: "/photos/halloween/DSCF2188.jpg",
+                    src: "/photos/halloween/DSCF2187.jpg",
                     rotation: 2,
                     scale: 1,
                   },
