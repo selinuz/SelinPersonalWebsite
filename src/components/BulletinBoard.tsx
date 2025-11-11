@@ -10,8 +10,9 @@ import { ThemeToggle } from "./ThemeToggle";
 import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
 import { SocialPinsGroup } from "./SocialPins";
-import CoreValues from "./CoreValues";
+/// import CoreValues from "./CoreValues";
 import SpotifyPlayer from "./SpotifyPlayer";
+import PhotographyGallery from "./PhotographyGallery";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -383,12 +384,59 @@ export default function BulletinBoard() {
           open={photographyOpen}
           onOpenChange={setPhotographyOpen}
           title="Photography"
-          description="My photography work">
-          <div className="space-y-4">
-            <p className={cn(TYPOGRAPHY.presets.body, "text-sm")}>
-              Photography content coming soon...
-            </p>
-          </div>
+          description="My photography work"
+          size="wide">
+          <PhotographyGallery
+            sections={[
+              {
+                title: "Animals",
+                photos: [
+                  {
+                    src: "/photos/animals/DSCF1413.jpg",
+                    rotation: -2,
+                    scale: 0.9,
+                  },
+                  {
+                    src: "/photos/animals/DSCF0305.jpg",
+                    rotation: 1,
+                    scale: 0.9,
+                  },
+                  {
+                    src: "/photos/animals/DSCF0455.jpg",
+                    rotation: -3,
+                    scale: 1.3,
+                  },
+                  {
+                    src: "/photos/animals/DSCF1394.jpg",
+                    rotation: 1,
+                    scale: 1.4,
+                  },
+                  {
+                    src: "/photos/animals/DSCF0187.jpg",
+                    rotation: -2,
+                    scale: 1.4,
+                  },
+                ],
+              },
+              {
+                title: "People",
+                photos: [
+                  {
+                    src: "/photos/people/photo1.jpg",
+                    rotation: -1,
+                  },
+                  {
+                    src: "/photos/people/photo2.jpg",
+                    rotation: 2,
+                  },
+                  {
+                    src: "/photos/people/photo3.jpg",
+                    rotation: -3,
+                  },
+                ],
+              },
+            ]}
+          />
         </ProjectDialog>
       </div>
     </DraggableProvider>

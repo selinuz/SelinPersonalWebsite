@@ -18,6 +18,7 @@ interface ProjectDialogProps {
   description?: string;
   tags?: string[];
   children?: React.ReactNode;
+  size?: "default" | "wide"; // Add size prop
 }
 
 export default function ProjectDialog({
@@ -27,10 +28,17 @@ export default function ProjectDialog({
   description,
   tags,
   children,
+  size = "default",
 }: ProjectDialogProps) {
+  const maxWidth = size === "wide" ? "sm:max-w-[1200px]" : "sm:max-w-[700px]";
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] max-w-[95vw] w-full bg-card border-border max-h-[90vh] overflow-y-auto">
+      <DialogContent
+        className={cn(
+          maxWidth,
+          "max-w-[95vw] w-full bg-card border-border max-h-[90vh] overflow-y-auto"
+        )}>
         <DialogHeader>
           <DialogTitle
             className={cn(
