@@ -1,3 +1,5 @@
+import { cn, INTERACTIONS } from "@/lib/design-constants";
+
 interface ZoomProps {
   zoom: number;
   setZoom: (value: number) => void;
@@ -8,9 +10,31 @@ export default function ZoomControls({ zoom, setZoom }: ZoomProps) {
     Math.min(max, Math.max(min, value));
 
   return (
-    <div id="zoom-controls">
-      <button onClick={() => setZoom(clamp(zoom + 0.1, 0.5, 2))}>+</button>
-      <button onClick={() => setZoom(clamp(zoom - 0.1, 0.5, 2))}>−</button>
-    </div>
+    <>
+      <button
+        onClick={() => setZoom(clamp(zoom + 0.1, 0.5, 2))}
+        className={cn(
+          "w-6 h-6 text-sm rounded-full",
+          "bg-primary text-primary-foreground",
+          "border-none",
+          INTERACTIONS.cursor.pointer,
+          INTERACTIONS.transition.all,
+          "hover:scale-110 hover:bg-accent hover:text-accent-foreground"
+        )}>
+        +
+      </button>
+      <button
+        onClick={() => setZoom(clamp(zoom - 0.1, 0.5, 2))}
+        className={cn(
+          "w-6 h-6 text-sm rounded-full",
+          "bg-primary text-primary-foreground",
+          "border-none",
+          INTERACTIONS.cursor.pointer,
+          INTERACTIONS.transition.all,
+          "hover:scale-110 hover:bg-accent hover:text-accent-foreground"
+        )}>
+        −
+      </button>
+    </>
   );
 }

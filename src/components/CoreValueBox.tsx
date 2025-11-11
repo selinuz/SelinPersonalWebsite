@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { cn, COLORS, INTERACTIONS, TYPOGRAPHY } from "@/lib/design-constants";
 
 type CoreValueBoxProps = {
   id: string;
@@ -23,20 +24,30 @@ export default function CoreValueBox({
   return (
     <div
       id={id}
-      className={`core-value ${expanded ? "expanded" : ""} ${
-        isHighlighted ? "highlight" : ""
-      }`}
+      className={cn(
+        "absolute p-2 w-[100px] text-center rounded-lg",
+        "bg-primary text-primary-foreground",
+        COLORS.shadows.sm,
+        INTERACTIONS.transition.all,
+        INTERACTIONS.cursor.grab,
+        "transform -translate-x-1/2 -translate-y-1/2",
+        isHighlighted && "scale-110 shadow-lg",
+        expanded && "bg-accent text-accent-foreground"
+      )}
       style={{
-        position: "absolute",
         left: `${x}px`,
         top: `${y}px`,
-        transform: "translate(-50%, -50%)",
+        zIndex: 10,
       }}
       onClick={() => setExpanded(!expanded)}>
-      <div className="core-value-header">
-        <h3>{label}</h3>
+      <div className="flex items-center justify-center font-bold">
+        <h3 className={cn(TYPOGRAPHY.fontSize.xs, "m-0")}>{label}</h3>
       </div>
-      <p className="definition">{definition}</p>
+      {expanded && (
+        <p className="text-[0.65rem] mt-1 leading-tight">
+          {definition}
+        </p>
+      )}
     </div>
   );
 }

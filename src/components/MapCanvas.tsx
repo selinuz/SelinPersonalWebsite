@@ -2,37 +2,35 @@
 import { useEffect, useRef, useState } from "react";
 import CoreValueBox from "./CoreValueBox";
 import ActivityBox from "./ActivityBox";
-import ZoomControls from "./ZoomControls";
 import ConnectionLines from "./ConnectionLines";
 import { coreValues, activities, connections } from "../data/core-values";
-import "../styles/core-values.css";
 
-export default function MapCanvas() {
+export default function MapCanvas({
+  zoom,
+}: {
+  zoom: number;
+  setZoom: (value: number) => void;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [zoom, setZoom] = useState(1);
   const [selectedActivityId, setSelectedActivityId] = useState<string | null>(
     null
   );
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [windowWidth, setWindowWidth] = useState(0);
+  const [minHeight, setMinHeight] = useState(600);
 
   useEffect(() => {
     const updateSize = () => {
       if (containerRef.current) {
-        const { width, height } = containerRef.current.getBoundingClientRect();
-        setSize({ width, height });
+        const { width } = containerRef.current.getBoundingClientRect();
+        setSize({ width, height: minHeight });
       }
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", updateSize);
     updateSize();
     return () => window.removeEventListener("resize", updateSize);
-  }, []);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    containerRef.current.style.transform = `scale(${zoom})`;
-  }, [zoom]);
+  }, [minHeight]);
 
   // Toggle selection
   const handleActivityClick = (id: string) => {
@@ -46,7 +44,7 @@ export default function MapCanvas() {
     height: number,
     zoom: number
   ) {
-    const baseSpacing = windowWidth / 6;
+    const baseSpacing = windowWidth / 10;
     const xspacing = baseSpacing * zoom;
     const yspacing =
       windowWidth < 768 ? baseSpacing * zoom * 2 : baseSpacing * zoom;
@@ -57,11 +55,27 @@ export default function MapCanvas() {
     };
   }
 
+  // Calculate dynamic height based on element positions
+  useEffect(() => {
+    const allElements = [...coreValues, ...activities];
+    if (allElements.length > 0 && size.width > 0) {
+      const maxY = Math.max(
+        ...allElements.map((el) => {
+          const pos = toPosition(el.x, el.y, size.width, minHeight, zoom);
+          return pos.y;
+        })
+      );
+      const calculatedHeight = Math.max(400, maxY);
+      setMinHeight(calculatedHeight);
+    }
+  }, [size.width, zoom, windowWidth]);
+
   return (
-    <div id="map">
-      <ZoomControls zoom={zoom} setZoom={setZoom} />
-      <div id="map-content" ref={containerRef}>
-        <ConnectionLines selectedActivityId={selectedActivityId} />
+    <div
+      className="relative w-full overflow-visible"
+      style={{ minHeight: `${minHeight}px` }}>
+      <div ref={containerRef} className="w-full relative">
+        <ConnectionLines selectedActivityId={selectedActivityId} zoom={zoom} />
 
         {coreValues.map((val) => {
           const isHighlighted = selectedActivityId

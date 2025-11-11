@@ -1,4 +1,5 @@
 import React from "react";
+import { cn, COLORS, INTERACTIONS, TYPOGRAPHY } from "@/lib/design-constants";
 
 type ActivityBoxProps = {
   id: string;
@@ -26,18 +27,35 @@ export default function ActivityBox({
   return (
     <div
       id={id}
-      className={`activity-box ${isSelected ? "highlight expanded" : ""}`}
+      className={cn(
+        "absolute p-3 w-[200px] text-center rounded-lg",
+        "bg-secondary text-secondary-foreground",
+        COLORS.shadows.md,
+        INTERACTIONS.transition.all,
+        INTERACTIONS.cursor.grab,
+        "transform -translate-x-1/2 -translate-y-1/2",
+        isSelected && "scale-110 shadow-xl bg-accent text-accent-foreground"
+      )}
       style={{
-        position: "absolute",
         left: `${x}px`,
         top: `${y}px`,
-        transform: "translate(-50%, -50%)",
+        zIndex: 10,
       }}
       onClick={onClick}>
-      <p className="title">{title}</p>
-      <p className="location">{location}</p>
-      <p className="duration">{duration}</p>
-      {isSelected && <p className="description">{description}</p>}
+      <p className={cn(TYPOGRAPHY.fontSize.sm, TYPOGRAPHY.fontWeight.bold)}>
+        {title}
+      </p>
+      <p className={cn(TYPOGRAPHY.fontSize.xs, "italic")}>{location}</p>
+      <p className={cn(TYPOGRAPHY.fontSize.xs)}>{duration}</p>
+      {isSelected && description && (
+        <p
+          className={cn(
+            TYPOGRAPHY.fontSize.xs,
+            "text-left mt-2 leading-tight"
+          )}>
+          {description}
+        </p>
+      )}
     </div>
   );
 }
