@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { cn, TYPOGRAPHY, COLORS, POLAROID } from "@/lib/design-constants";
 import { ChevronDown, ChevronRight, ChevronLeft, X } from "lucide-react";
@@ -12,7 +12,7 @@ interface Photo {
 }
 
 interface PhotoSection {
-  title: string;
+  title?: string;
   photos: Photo[];
 }
 
@@ -124,18 +124,39 @@ export default function PhotographyGallery({
     setFullscreenImage(photoSrc);
   };
 
-  const navigatePhoto = (direction: "prev" | "next") => {
-    const newIndex =
-      direction === "next"
-        ? (currentImageIndex + 1) % allPhotos.length
-        : (currentImageIndex - 1 + allPhotos.length) % allPhotos.length;
-    setCurrentImageIndex(newIndex);
-    setFullscreenImage(allPhotos[newIndex].src);
-  };
+  const navigatePhoto = useCallback(
+    (direction: "prev" | "next") => {
+      const newIndex =
+        direction === "next"
+          ? (currentImageIndex + 1) % allPhotos.length
+          : (currentImageIndex - 1 + allPhotos.length) % allPhotos.length;
+      setCurrentImageIndex(newIndex);
+      setFullscreenImage(allPhotos[newIndex].src);
+    },
+    [currentImageIndex, allPhotos]
+  );
 
-  const closeFullscreen = () => {
+  const closeFullscreen = useCallback(() => {
     setFullscreenImage(null);
-  };
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!fullscreenImage) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        navigatePhoto("next");
+      } else if (e.key === "ArrowLeft") {
+        navigatePhoto("prev");
+      } else if (e.key === "Escape") {
+        closeFullscreen();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [fullscreenImage, navigatePhoto, closeFullscreen]);
 
   return (
     <>

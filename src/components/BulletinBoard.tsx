@@ -389,6 +389,40 @@ export default function BulletinBoard() {
           <PhotographyGallery
             sections={[
               {
+                photos: [
+                  {
+                    src: "/photos/other/DSCF0321.jpg",
+                    rotation: -2,
+                    scale: 1.5,
+                  },
+                  {
+                    src: "/photos/other/DSCF0761.jpg",
+                    rotation: 1,
+                    scale: 1.5,
+                  },
+                  {
+                    src: "/photos/other/DSCF1336.jpg",
+                    rotation: 0,
+                    scale: 1.7,
+                  },
+                  {
+                    src: "/photos/other/DSCF1375.jpg",
+                    rotation: 2,
+                    scale: 1.5,
+                  },
+                  {
+                    src: "/photos/other/DSCF1376.jpg",
+                    rotation: 0,
+                    scale: 1.5,
+                  },
+                  {
+                    src: "/photos/other/DSCF1872.jpg",
+                    rotation: -3,
+                    scale: 1.5,
+                  },
+                ],
+              },
+              {
                 title: "Animals",
                 photos: [
                   {
