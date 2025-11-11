@@ -453,19 +453,53 @@ export default function BulletinBoard() {
                 ],
               },
               {
-                title: "People",
+                title: "Halloween 2025",
                 photos: [
                   {
-                    src: "/photos/people/photo1.jpg",
-                    rotation: -1,
+                    src: "/photos/halloween/DSCF1929.jpg",
+                    rotation: -2,
+                    scale: 1.4,
                   },
                   {
-                    src: "/photos/people/photo2.jpg",
-                    rotation: 2,
+                    src: "/photos/halloween/DSCF2337.jpg",
+                    rotation: 1,
+                    scale: 1.5,
                   },
                   {
-                    src: "/photos/people/photo3.jpg",
+                    src: "/photos/halloween/DSCF2342.jpg",
+                    rotation: 3,
+                    scale: 1.6,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF2010.jpg",
+                    rotation: 1,
+                    scale: 1.5,
+                  },
+
+                  {
+                    src: "/photos/halloween/DSCF1992.jpg",
+                    rotation: 1,
+                    scale: 1.3,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF2187.jpg",
                     rotation: -3,
+                    scale: 1,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF2188.jpg",
+                    rotation: 2,
+                    scale: 1,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF2332.jpg",
+                    rotation: -1,
+                    scale: 1.3,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF1947.jpg",
+                    rotation: 0,
+                    scale: 1.3,
                   },
                 ],
               },
