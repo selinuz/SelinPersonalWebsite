@@ -18,7 +18,7 @@ interface ProjectDialogProps {
   description?: string;
   tags?: string[];
   children?: React.ReactNode;
-  size?: "default" | "wide"; // Add size prop
+  size?: "default" | "wide";
 }
 
 export default function ProjectDialog({

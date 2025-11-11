@@ -102,6 +102,7 @@ export default function PhotographyGallery({
   );
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
   // Flatten all photos into a single array for navigation
   const allPhotos = sections.flatMap((section) => section.photos);
@@ -121,6 +122,13 @@ export default function PhotographyGallery({
   const openFullscreen = (photoSrc: string) => {
     const index = allPhotos.findIndex((photo) => photo.src === photoSrc);
     setCurrentImageIndex(index);
+
+    // Capture the current scroll position of the dialog
+    const dialogContent = document.querySelector('[role="dialog"]');
+    if (dialogContent) {
+      setScrollOffset(dialogContent.scrollTop);
+    }
+
     setFullscreenImage(photoSrc);
   };
 
@@ -205,7 +213,11 @@ export default function PhotographyGallery({
       {/* Fullscreen Lightbox */}
       {fullscreenImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          className="absolute left-0 right-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          style={{
+            top: scrollOffset,
+            height: '100vh',
+          }}
           onClick={closeFullscreen}>
           {/* Close button */}
           <button
