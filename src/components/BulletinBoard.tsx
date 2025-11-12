@@ -77,22 +77,22 @@ export default function BulletinBoard() {
     }
 
     return {
-      "polaroid-card": { x: width * 0.05, y: height * 0.05 },
+      "polaroid-card": { x: width * 0.01, y: height * 0.05 },
       "welcome-note": {
-        x: (width - welcomeNoteWidth) / 3,
+        x: width * 0.2,
         y: height * 0.05,
       },
       "whats-next-note": {
         x: width * 0.7,
-        y: height * 0.45,
+        y: height * 0.4,
       },
-      "projects-folder": { x: width * 0.6, y: height * 0.1 },
-      "work-experience-folder": { x: width * 0.58, y: height * 0.3 },
-      "resume-file": { x: width * 0.5, y: height * 0.1 },
-      "photography-icon": { x: width * 0.48, y: height * 0.3 },
-      "social-pins": { x: width * 0.24, y: height * 0.34 },
+      "projects-folder": { x: width * 0.6, y: height * 0.3 },
+      "work-experience-folder": { x: width * 0.58, y: height * 0.1 },
+      "resume-file": { x: width * 0.5, y: height * 0.05 },
+      "photography-icon": { x: width * 0.46, y: height * 0.25 },
+      "social-pins": { x: width * 0.22, y: height * 0.4 },
       "core-values": { x: width * 0.05, y: height * 0.45 },
-      "spotify-player": { x: width * 0.7, y: height * 0.05 },
+      "spotify-player": { x: width * 0.73, y: height * 0.1 },
     };
   };
 
@@ -159,15 +159,10 @@ export default function BulletinBoard() {
                     top: `-${pushpinStyle.size}`,
                   }}></div>
 
-                <h1
-                  className={cn(
-                    TYPOGRAPHY.presets.heading,
-                    "mb-4 text-xl sm:text-2xl"
-                  )}>
+                <h1 className={cn(TYPOGRAPHY.presets.heading, "mb-4")}>
                   Welcome!
                 </h1>
-                <p
-                  className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
+                <p className={cn(TYPOGRAPHY.presets.body)}>
                   {
                     "This is my digital board, a mix of how my brain and desktop look. Click on the icons to explore more!"
                   }
@@ -201,15 +196,10 @@ export default function BulletinBoard() {
                     top: `-${pushpinStyle.size}`,
                   }}></div>
 
-                <h1
-                  className={cn(
-                    TYPOGRAPHY.presets.heading,
-                    "mb-4 text-xl sm:text-2xl"
-                  )}>
+                <h1 className={cn(TYPOGRAPHY.presets.heading, "mb-4")}>
                   What is next?
                 </h1>
-                <p
-                  className={cn(TYPOGRAPHY.presets.body, "text-xs sm:text-sm")}>
+                <p className={cn(TYPOGRAPHY.presets.body)}>
                   {
                     "I am graduating in May 2026 and looking for work opportunities in Europe, specifically in the Netherlands in Product or Project Management."
                   }
@@ -331,7 +321,7 @@ export default function BulletinBoard() {
               download
               className={cn(
                 TYPOGRAPHY.presets.body,
-                "inline-block text-blue-600 hover:text-blue-800 underline text-sm"
+                "inline-block text-blue-600 hover:text-blue-800 underline"
               )}>
               Download Resume
             </a>
@@ -344,13 +334,13 @@ export default function BulletinBoard() {
           title="About Me"
           description="Get to know me a little better">
           <div className="space-y-4">
-            <p className={cn(TYPOGRAPHY.presets.body, "text-sm")}>
+            <p className={cn(TYPOGRAPHY.presets.body)}>
               I&apos;m a senior Computer Science student at UBC with a passion
               for solving problems through creative and critical thinking. I
               love building meaningful projects, improving processes, and making
               things more efficient.
             </p>
-            <p className={cn(TYPOGRAPHY.presets.body, "text-sm")}>
+            <p className={cn(TYPOGRAPHY.presets.body)}>
               I&apos;m honored to have received the{" "}
               <a
                 href="https://you.ubc.ca/financial-planning/scholarships-awards-international-students/international-scholars/"
@@ -364,7 +354,7 @@ export default function BulletinBoard() {
               allowed me to move from my home country, Türkiye, to Canada to
               pursue my education.
             </p>
-            <p className={cn(TYPOGRAPHY.presets.body, "text-sm")}>
+            <p className={cn(TYPOGRAPHY.presets.body)}>
               Outside of academics, I like sailing and (try to) spend my summers
               out on the ocean. I enjoy reading non-fiction like feminist
               literature and philosophy, and taking pictures with my camera.
@@ -391,70 +381,34 @@ export default function BulletinBoard() {
               {
                 photos: [
                   {
-                    src: "/photos/other/DSCF0321.jpg",
-                    rotation: -2,
-                    scale: 1.5,
-                  },
-                  {
                     src: "/photos/other/DSCF0761.jpg",
                     rotation: 1,
-                    scale: 1.5,
+                    scale: 1.6,
                   },
                   {
                     src: "/photos/other/DSCF1336.jpg",
-                    rotation: 0,
-                    scale: 1.7,
+                    rotation: -3,
+                    scale: 1.9,
                   },
                   {
                     src: "/photos/other/DSCF1375.jpg",
                     rotation: 2,
-                    scale: 1.5,
+                    scale: 1.8,
                   },
                   {
                     src: "/photos/other/DSCF1376.jpg",
                     rotation: 0,
-                    scale: 1.8,
+                    scale: 1.9,
                   },
                   {
                     src: "/photos/other/DSCF1872.jpg",
-                    rotation: 2,
-                    scale: 1.6,
+                    rotation: 1,
+                    scale: 1.7,
                   },
-
                   {
                     src: "/photos/other/DSCF1077.jpg",
-                    rotation: -3,
-                    scale: 1.6,
-                  },
-                ],
-              },
-              {
-                title: "Animals",
-                photos: [
-                  {
-                    src: "/photos/animals/DSCF1413.jpg",
-                    rotation: -2,
-                    scale: 0.9,
-                  },
-                  {
-                    src: "/photos/animals/DSCF0305.jpg",
                     rotation: 1,
-                    scale: 0.9,
-                  },
-                  {
-                    src: "/photos/animals/DSCF0455.jpg",
-                    rotation: -3,
-                    scale: 1.3,
-                  },
-                  {
-                    src: "/photos/animals/DSCF1394.jpg",
-                    rotation: 1,
-                    scale: 1.4,
-                  },
-                  {
-                    src: "/photos/animals/DSCF0187.jpg",
-                    rotation: -2,
-                    scale: 1.4,
+                    scale: 1.7,
                   },
                 ],
               },
@@ -464,48 +418,78 @@ export default function BulletinBoard() {
                   {
                     src: "/photos/halloween/DSCF1929.jpg",
                     rotation: -2,
-                    scale: 1.4,
-                  },
-                  {
-                    src: "/photos/halloween/DSCF2337.jpg",
-                    rotation: 1,
                     scale: 1.5,
-                  },
-                  {
-                    src: "/photos/halloween/DSCF2342.jpg",
-                    rotation: 3,
-                    scale: 1.6,
                   },
                   {
                     src: "/photos/halloween/DSCF2010.jpg",
                     rotation: 1,
-                    scale: 1.5,
+                    scale: 1.7,
                   },
-
+                  {
+                    src: "/photos/halloween/DSCF2337.jpg",
+                    rotation: 1,
+                    scale: 1.6,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF2342.jpg",
+                    rotation: 3,
+                    scale: 1.7,
+                  },
                   {
                     src: "/photos/halloween/DSCF1992.jpg",
-                    rotation: 1,
-                    scale: 1.3,
-                  },
-                  {
-                    src: "/photos/halloween/DSCF2188.jpg",
-                    rotation: -3,
-                    scale: 1,
-                  },
-                  {
-                    src: "/photos/halloween/DSCF2187.jpg",
-                    rotation: 2,
-                    scale: 1,
+                    rotation: -1,
+                    scale: 1.7,
                   },
                   {
                     src: "/photos/halloween/DSCF2332.jpg",
                     rotation: -1,
-                    scale: 1.3,
+                    scale: 1.8,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF2188.jpg",
+                    rotation: -3,
+                    scale: 1.2,
+                  },
+                  {
+                    src: "/photos/halloween/DSCF2187.jpg",
+                    rotation: 2,
+                    scale: 1.2,
                   },
                   {
                     src: "/photos/halloween/DSCF1947.jpg",
-                    rotation: 0,
-                    scale: 1.3,
+                    rotation: -3,
+                    scale: 1.4,
+                  },
+                ],
+              },
+
+              {
+                title: "Animals",
+                photos: [
+                  {
+                    src: "/photos/animals/DSCF1413.jpg",
+                    rotation: -2,
+                    scale: 1,
+                  },
+                  {
+                    src: "/photos/animals/DSCF0455.jpg",
+                    rotation: -3,
+                    scale: 1.7,
+                  },
+                  {
+                    src: "/photos/animals/DSCF1394.jpg",
+                    rotation: 1,
+                    scale: 1.8,
+                  },
+                  {
+                    src: "/photos/animals/DSCF0305.jpg",
+                    rotation: 1,
+                    scale: 1.1,
+                  },
+                  {
+                    src: "/photos/animals/DSCF0187.jpg",
+                    rotation: -2,
+                    scale: 1.8,
                   },
                 ],
               },

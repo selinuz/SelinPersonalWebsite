@@ -37,6 +37,7 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
           className={cn(
             TYPOGRAPHY.fontFamily.mono,
             "cursor-pointer transition-all duration-200",
+            "text-sm",
             selectedSkills.length === 0
               ? "bg-secondary text-secondary-foreground border-transparent"
               : "hover:bg-secondary/80"
@@ -51,6 +52,7 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
             className={cn(
               TYPOGRAPHY.fontFamily.mono,
               "cursor-pointer transition-all duration-200",
+              "text-sm",
               selectedSkills.includes(skill)
                 ? "bg-secondary text-secondary-foreground border-transparent"
                 : "hover:bg-secondary/80"
@@ -64,7 +66,8 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
       {/* Sort Dropdown - Aligned Right */}
       <div className="flex justify-end">
         <Select value={sortOrder} onValueChange={setSortOrder}>
-          <SelectTrigger className={cn("w-[180px]", TYPOGRAPHY.fontFamily.mono)}>
+          <SelectTrigger
+            className={cn("w-[180px]", TYPOGRAPHY.fontFamily.mono)}>
             <SelectValue placeholder="Sort by..." />
           </SelectTrigger>
           <SelectContent>
