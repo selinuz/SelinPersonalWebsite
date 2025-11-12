@@ -35,7 +35,7 @@ export default function BulletinBoard() {
 
   const width = typeof window !== "undefined" ? window.innerWidth : 1200;
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
-  const welcomeNoteWidth = isMobile ? Math.min(width * 0.7, 300) : 448;
+  const welcomeNoteWidth = isMobile ? Math.min(width * 0.7, 300) : 200;
 
   useEffect(() => {
     setIsMounted(true);
@@ -57,22 +57,22 @@ export default function BulletinBoard() {
   const getInitialPositions = () => {
     if (isMobile) {
       return {
-        "polaroid-card": { x: width * 0.01, y: height * 0.4 },
+        "polaroid-card": { x: width * 0.01, y: height * 0.35 },
         "welcome-note": {
           x: (width - welcomeNoteWidth) / 4,
           y: height * 0.01,
         },
         "whats-next-note": {
-          x: width * 0.55,
-          y: height * 0.01,
+          x: width * 0.1,
+          y: height * 0.7,
         },
-        "projects-folder": { x: width * 0.5, y: height * 0.3 },
-        "work-experience-folder": { x: width * 0.1, y: height * 0.3 },
-        "resume-file": { x: width * 0.5, y: height * 0.4 },
-        "photography-icon": { x: width * 0.7, y: height * 0.3 },
-        "social-pins": { x: width * 0.1, y: height * 0.07 },
+        "projects-folder": { x: width * 0.7, y: height * 0.3 },
+        "work-experience-folder": { x: width * 0.6, y: height * 0.4 },
+        "resume-file": { x: width * 0.5, y: height * 0.1 },
+        "photography-icon": { x: width * 0.4, y: height * 0.2 },
+        "social-pins": { x: width * 0.01, y: height * 0.32 },
         "core-values": { x: width * 0.05, y: height * 0.5 },
-        "spotify-player": { x: width * 0.05, y: height * 0.9 },
+        "spotify-player": { x: width * 0.05, y: height * 0.75 },
       };
     }
 
@@ -140,7 +140,7 @@ export default function BulletinBoard() {
               <div
                 className={cn(
                   COLORS.paper.white,
-                  SPACING.padding.lg,
+                  SPACING.padding.md,
                   COLORS.shadows["2xl"],
                   PAPER_STYLES.note.rotationClasses,
                   SIZING.container.sm,
@@ -177,7 +177,7 @@ export default function BulletinBoard() {
               <div
                 className={cn(
                   COLORS.paper.white,
-                  SPACING.padding.lg,
+                  SPACING.padding.md,
                   COLORS.shadows["2xl"],
                   "transform rotate-3",
                   SIZING.container.sm,
