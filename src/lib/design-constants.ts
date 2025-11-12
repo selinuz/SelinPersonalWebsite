@@ -68,13 +68,12 @@ export const TYPOGRAPHY = {
     foreground: "text-foreground", // CSS variable based
   },
 
-  // Preset text styles for common use cases
   presets: {
     heading: "text-2xl font-bold text-foreground font-mono",
     subheading: "text-xl font-semibold text-foreground font-mono",
-    body: "text-sm text-foreground font-mono",
-    label: "text-foreground font-mono font-semibold",
-    caption: "text-foreground/80 font-mono",
+    body: "text-base text-foreground font-mono leading-relaxed",
+    label: "text-base md:text-lg text-foreground font-mono font-semibold",
+    caption: "text-sm md:text-base text-foreground/80 font-mono",
   },
 } as const;
 

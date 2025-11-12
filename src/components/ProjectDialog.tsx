@@ -66,7 +66,7 @@ export default function ProjectDialog({
               <Badge
                 key={tag}
                 variant="secondary"
-                className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs")}>
+                className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
                 {tag}
               </Badge>
             ))}

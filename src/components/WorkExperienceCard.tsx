@@ -29,20 +29,23 @@ const WorkExperienceCard: React.FC<Props> = ({
       className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1"
       onClick={() => toggleExpanded(experience.id)}>
       <CardHeader>
-        <CardTitle className={cn(TYPOGRAPHY.fontFamily.mono, "text-lg")}>
+        <CardTitle
+          className={cn(TYPOGRAPHY.fontFamily.mono, "text-lg md:text-xl")}>
           {experience.company}
         </CardTitle>
         <CardDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
           {experience.position} | {experience.employmentType}
         </CardDescription>
-        <CardDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs")}>
+        <CardDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
           {experience.duration}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-3">
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className={TYPOGRAPHY.fontFamily.mono}>
+          <Badge
+            variant="outline"
+            className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
             {experience.location}
           </Badge>
         </div>
@@ -50,7 +53,10 @@ const WorkExperienceCard: React.FC<Props> = ({
         {/* Skills */}
         <div className="flex flex-wrap gap-2">
           {experience.skills.map((skill) => (
-            <Badge key={skill} variant="secondary" className={TYPOGRAPHY.fontFamily.mono}>
+            <Badge
+              key={skill}
+              variant="secondary"
+              className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
               {skill}
             </Badge>
           ))}
@@ -58,7 +64,11 @@ const WorkExperienceCard: React.FC<Props> = ({
 
         {/* Click to expand hint */}
         {!expanded && (
-          <p className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs italic text-muted-foreground")}>
+          <p
+            className={cn(
+              TYPOGRAPHY.fontFamily.mono,
+              "text-sm italic text-muted-foreground"
+            )}>
             Click to see responsibilities...
           </p>
         )}
@@ -66,12 +76,18 @@ const WorkExperienceCard: React.FC<Props> = ({
         {/* Expanded responsibilities */}
         {expanded && (
           <div className="space-y-3 animate-in fade-in-0 slide-in-from-top-2 duration-300">
-            <p className={cn(TYPOGRAPHY.fontFamily.mono, "font-semibold text-sm")}>
+            <p
+              className={cn(
+                TYPOGRAPHY.fontFamily.mono,
+                "font-semibold text-sm md:text-base"
+              )}>
               Key Responsibilities:
             </p>
-            <ul className="space-y-2 list-disc list-inside text-sm">
+            <ul className="space-y-2 list-disc list-inside text-sm md:text-base">
               {experience.responsibilities.map((item, i) => (
-                <li key={i} className={cn(TYPOGRAPHY.fontFamily.mono, "leading-relaxed")}>
+                <li
+                  key={i}
+                  className={cn(TYPOGRAPHY.fontFamily.mono, "leading-relaxed")}>
                   {item}
                 </li>
               ))}

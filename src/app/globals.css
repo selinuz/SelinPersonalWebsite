@@ -132,6 +132,31 @@ body {
     @apply bg-background text-foreground;
   }
 
+  html {
+    font-size: 16px;
+  }
+
+  /* Tablet and larger */
+  @media (min-width: 768px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  /* Desktop and larger */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  /* Large desktop */
+  @media (min-width: 1440px) {
+    html {
+      font-size: 19px;
+    }
+  }
+
   /* Mobile-specific improvements */
   @media (max-width: 640px) {
     /* Prevent text selection when dragging on mobile */
@@ -148,11 +173,21 @@ body {
       min-height: 44px;
       min-width: 44px;
     }
+
+    /* Better line height for mobile readability */
+    body {
+      line-height: 1.6;
+    }
   }
 
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Improve overall line height for better readability */
+  body {
+    line-height: 1.7;
   }
 }

@@ -44,11 +44,13 @@ export default function Icon({
       onClick={onClick}
       style={{ transform: `rotate(${rotation}deg)` }}>
       <div className={cn("flex flex-col items-center pt-2", SPACING.gap.sm)}>
-        <IconComponent className={cn(SIZING.icon.sm, color, "drop-shadow-lg")} />
+        <IconComponent
+          className={cn(SIZING.icon.sm, color, "drop-shadow-lg")}
+        />
         <p
           className={cn(
             TYPOGRAPHY.presets.label,
-            "text-center drop-shadow-sm sm:text-sm"
+            "text-center drop-shadow-sm"
           )}>
           {label}
         </p>

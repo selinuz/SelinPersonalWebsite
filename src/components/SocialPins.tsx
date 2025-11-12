@@ -46,7 +46,7 @@ export function SocialPinsGroup({
   linkedin,
 }: SocialPinsGroupProps) {
   return (
-    <div className="flex flex-row gap-10 items-center">
+    <div className="flex flex-row gap-4 md:gap-10 items-center">
       {email && <SocialPin icon="email" href={`mailto:${email}`} />}
       {github && <SocialPin icon="github" href={github} />}
       {linkedin && <SocialPin icon="linkedin" href={linkedin} />}

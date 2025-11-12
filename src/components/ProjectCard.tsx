@@ -31,10 +31,11 @@ const ProjectCard: React.FC<Props> = ({
       onClick={() => toggleExpanded(project.id)}>
       <CardHeader>
         <div className="flex justify-between items-start gap-4">
-          <CardTitle className={cn(TYPOGRAPHY.fontFamily.mono, "text-lg")}>
+          <CardTitle
+            className={cn(TYPOGRAPHY.fontFamily.mono, "text-lg md:text-xl")}>
             {project.title}
             {project.subtitle && (
-              <span className="text-sm font-normal italic ml-2">
+              <span className="text-sm md:text-base font-normal italic ml-2">
                 {project.subtitle}
               </span>
             )}
@@ -47,31 +48,42 @@ const ProjectCard: React.FC<Props> = ({
               className="shrink-0 transition-transform hover:scale-110"
               onClick={(e) => e.stopPropagation()}>
               <Image
-                src={project.iconType === "github" ? "/github.svg" : "/link.svg"}
-                alt={
-                  project.iconType === "github" ? "GitHub Link" : "External Link"
+                src={
+                  project.iconType === "github" ? "/github.svg" : "/link.svg"
                 }
-                width={24}
-                height={24}
+                alt={
+                  project.iconType === "github"
+                    ? "GitHub Link"
+                    : "External Link"
+                }
+                width={40}
+                height={40}
                 className="opacity-70 hover:opacity-100"
               />
             </a>
           )}
         </div>
-        <CardDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs")}>
+        <CardDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
           {project.duration}
         </CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-4">
-        <p className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm leading-relaxed")}>
+        <p
+          className={cn(
+            TYPOGRAPHY.fontFamily.mono,
+            "text-sm md:text-base leading-relaxed"
+          )}>
           {project.description}
         </p>
 
         {/* Skills */}
         <div className="flex flex-wrap gap-2">
           {project.skills.map((skill) => (
-            <Badge key={skill} variant="secondary" className={TYPOGRAPHY.fontFamily.mono}>
+            <Badge
+              key={skill}
+              variant="secondary"
+              className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
               {skill}
             </Badge>
           ))}
@@ -79,7 +91,11 @@ const ProjectCard: React.FC<Props> = ({
 
         {/* Click to expand hint */}
         {!expanded && (
-          <p className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs italic text-muted-foreground")}>
+          <p
+            className={cn(
+              TYPOGRAPHY.fontFamily.mono,
+              "text-sm italic text-muted-foreground"
+            )}>
             Click to see more...
           </p>
         )}
@@ -88,19 +104,29 @@ const ProjectCard: React.FC<Props> = ({
         {expanded && (
           <div className="space-y-3 animate-in fade-in-0 slide-in-from-top-2 duration-300">
             {project.detailsTitle && (
-              <p className={cn(TYPOGRAPHY.fontFamily.mono, "font-semibold text-sm")}>
+              <p
+                className={cn(
+                  TYPOGRAPHY.fontFamily.mono,
+                  "font-semibold text-sm md:text-base"
+                )}>
                 {project.detailsTitle}
               </p>
             )}
             <ul className="space-y-2 list-disc list-inside text-sm">
               {project.details.map((item, i) => (
-                <li key={i} className={cn(TYPOGRAPHY.fontFamily.mono, "leading-relaxed")}>
+                <li
+                  key={i}
+                  className={cn(TYPOGRAPHY.fontFamily.mono, "leading-relaxed")}>
                   {item}
                 </li>
               ))}
             </ul>
             {project.context && (
-              <p className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm italic text-muted-foreground mt-2")}>
+              <p
+                className={cn(
+                  TYPOGRAPHY.fontFamily.mono,
+                  "text-sm italic text-muted-foreground mt-2"
+                )}>
                 {project.context}
               </p>
             )}
