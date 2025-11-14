@@ -53,7 +53,6 @@ export default function BulletinBoard() {
 
   const pushpinStyle = getPushpinStyle("small", "blue");
 
-  // Responsive positioning based on screen size
   const getInitialPositions = () => {
     if (isMobile) {
       return {
@@ -164,7 +163,7 @@ export default function BulletinBoard() {
                 </h1>
                 <p className={cn(TYPOGRAPHY.presets.body)}>
                   {
-                    "This is my digital board, a mix of how my brain and desktop look. Click on the icons to explore more!"
+                    "This is my digital board, a mix of how my brain and desktop look. Click on things to explore more!"
                   }
                 </p>
               </div>
@@ -285,6 +284,17 @@ export default function BulletinBoard() {
           {/* Spotify Player */}
           <Draggable id="spotify-player">
             <div className="absolute">
+              {/* Push pin */}
+              <div
+                className={cn(
+                  "absolute left-1/2 -translate-x-1/2 z-10",
+                  pushpinStyle.className
+                )}
+                style={{
+                  width: pushpinStyle.size,
+                  height: pushpinStyle.size,
+                  top: `-${pushpinStyle.size}`,
+                }}></div>
               <SpotifyPlayer
                 playlistId="6VHIyDbHHeokuob3F9BbST"
                 width={300}
