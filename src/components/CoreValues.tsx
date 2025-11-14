@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import MapCanvas from "./MapCanvas";
-import ZoomControls from "./ZoomControls";
 import {
   cn,
   TYPOGRAPHY,
@@ -12,7 +11,6 @@ import {
 
 export default function CoreValues() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const [zoom, setZoom] = useState(1);
   const pushpinStyle = getPushpinStyle("small", "blue");
 
   return (
@@ -32,7 +30,6 @@ export default function CoreValues() {
               <li className="font-normal">
                 Tap connection lines to see relationships.
               </li>
-              <li className="font-normal">Use +/− to zoom.</li>
             </ul>
           </div>
         )}
@@ -60,34 +57,27 @@ export default function CoreValues() {
                 top: `-${pushpinStyle.size}`,
               }}></div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center flex-1 justify-center">
-                <h2
-                  className={cn(
-                    TYPOGRAPHY.presets.subheading,
-                    "text-base sm:text-lg"
-                  )}>
-                  Values in Action
-                </h2>
-                <button
-                  className={cn(
-                    "bg-primary text-primary-foreground rounded-full ml-2",
-                    "w-5 h-5 flex items-center justify-center",
-                    "cursor-pointer text-xs"
-                  )}
-                  onMouseEnter={() => setShowTooltip(true)}
-                  onMouseLeave={() => setShowTooltip(false)}
-                  onFocus={() => setShowTooltip(true)}
-                  onBlur={() => setShowTooltip(false)}
-                  tabIndex={0}>
-                  i
-                </button>
-              </div>
-
-              {/* Zoom controls in title */}
-              <div className="flex gap-1">
-                <ZoomControls zoom={zoom} setZoom={setZoom} />
-              </div>
+            <div className="flex items-center justify-center">
+              <h2
+                className={cn(
+                  TYPOGRAPHY.presets.subheading,
+                  "text-base sm:text-lg"
+                )}>
+                Values in Action
+              </h2>
+              <button
+                className={cn(
+                  "bg-primary text-primary-foreground rounded-full ml-2",
+                  "w-5 h-5 flex items-center justify-center",
+                  "cursor-pointer text-xs"
+                )}
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+                onFocus={() => setShowTooltip(true)}
+                onBlur={() => setShowTooltip(false)}
+                tabIndex={0}>
+                i
+              </button>
             </div>
           </div>
 
@@ -98,7 +88,7 @@ export default function CoreValues() {
               "border-t-0 rounded-b-lg",
               COLORS.shadows.xl
             )}>
-            <MapCanvas zoom={zoom} setZoom={setZoom} />
+            <MapCanvas />
           </div>
         </div>
       </div>

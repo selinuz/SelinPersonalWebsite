@@ -5,12 +5,7 @@ import ActivityBox from "./ActivityBox";
 import ConnectionLines from "./ConnectionLines";
 import { coreValues, activities, connections } from "../data/core-values";
 
-export default function MapCanvas({
-  zoom,
-}: {
-  zoom: number;
-  setZoom: (value: number) => void;
-}) {
+export default function MapCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedActivityId, setSelectedActivityId] = useState<string | null>(
     null
@@ -41,13 +36,12 @@ export default function MapCanvas({
     x: number,
     y: number,
     width: number,
-    height: number,
-    zoom: number
+    height: number
   ) {
     const baseSpacing = windowWidth / 10;
-    const xspacing = baseSpacing * zoom;
+    const xspacing = baseSpacing;
     const yspacing =
-      windowWidth < 768 ? baseSpacing * zoom * 2 : baseSpacing * zoom;
+      windowWidth < 768 ? baseSpacing * 2 : baseSpacing;
 
     return {
       x: width / 2 + x * xspacing,
@@ -61,21 +55,21 @@ export default function MapCanvas({
     if (allElements.length > 0 && size.width > 0) {
       const maxY = Math.max(
         ...allElements.map((el) => {
-          const pos = toPosition(el.x, el.y, size.width, minHeight, zoom);
+          const pos = toPosition(el.x, el.y, size.width, minHeight);
           return pos.y;
         })
       );
       const calculatedHeight = Math.max(400, maxY);
       setMinHeight(calculatedHeight);
     }
-  }, [size.width, zoom, windowWidth]);
+  }, [size.width, windowWidth]);
 
   return (
     <div
       className="relative w-full overflow-visible"
       style={{ minHeight: `${minHeight}px` }}>
       <div ref={containerRef} className="w-full relative">
-        <ConnectionLines selectedActivityId={selectedActivityId} zoom={zoom} />
+        <ConnectionLines selectedActivityId={selectedActivityId} />
 
         {coreValues.map((val) => {
           const isHighlighted = selectedActivityId
@@ -85,7 +79,7 @@ export default function MapCanvas({
                   (conn.to === selectedActivityId && conn.from === val.id)
               )
             : false;
-          const pos = toPosition(val.x, val.y, size.width, size.height, zoom);
+          const pos = toPosition(val.x, val.y, size.width, size.height);
           return (
             <CoreValueBox
               key={val.id}
@@ -100,7 +94,7 @@ export default function MapCanvas({
           <ActivityBox
             key={act.id}
             {...act}
-            {...toPosition(act.x, act.y, size.width, size.height, zoom)}
+            {...toPosition(act.x, act.y, size.width, size.height)}
             isSelected={selectedActivityId === act.id}
             onClick={() => handleActivityClick(act.id)}
           />

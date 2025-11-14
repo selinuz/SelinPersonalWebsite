@@ -18,10 +18,8 @@ const createPushPin = (x: number, y: number, isHighlighted: boolean) => {
 
 export default function ConnectionLines({
   selectedActivityId,
-  zoom,
 }: {
   selectedActivityId: string | null;
-  zoom: number;
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [selectedLineId, setSelectedLineId] = useState<string | null>(null);
@@ -150,7 +148,7 @@ export default function ConnectionLines({
         svg.appendChild(foreignObject);
       }
     });
-  }, [selectedActivityId, selectedLineId, zoom]);
+  }, [selectedActivityId, selectedLineId]);
 
   useEffect(() => {
     const svg = svgRef.current;
