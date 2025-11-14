@@ -12,7 +12,7 @@ export default function MapCanvas() {
   );
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [windowWidth, setWindowWidth] = useState(0);
-  const [minHeight, setMinHeight] = useState(600);
+  const [minHeight, setMinHeight] = useState(700);
 
   useEffect(() => {
     const updateSize = () => {
@@ -32,16 +32,10 @@ export default function MapCanvas() {
     setSelectedActivityId((prev) => (prev === id ? null : id));
   };
 
-  function toPosition(
-    x: number,
-    y: number,
-    width: number,
-    height: number
-  ) {
+  function toPosition(x: number, y: number, width: number, height: number) {
     const baseSpacing = windowWidth / 10;
     const xspacing = baseSpacing;
-    const yspacing =
-      windowWidth < 768 ? baseSpacing * 2 : baseSpacing;
+    const yspacing = windowWidth < 768 ? baseSpacing * 2 : baseSpacing * 1.2;
 
     return {
       x: width / 2 + x * xspacing,

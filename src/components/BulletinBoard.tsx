@@ -90,7 +90,7 @@ export default function BulletinBoard() {
       "resume-file": { x: width * 0.5, y: height * 0.05 },
       "photography-icon": { x: width * 0.46, y: height * 0.25 },
       "social-pins": { x: width * 0.22, y: height * 0.4 },
-      "core-values": { x: width * 0.05, y: height * 0.45 },
+      "core-values": { x: width * 0.05, y: height * 0.5 },
       "spotify-player": { x: width * 0.73, y: height * 0.1 },
     };
   };
@@ -277,7 +277,7 @@ export default function BulletinBoard() {
                 className="absolute"
                 style={{
                   width: "60vw",
-                  maxWidth: "800px",
+                  maxWidth: "900px",
                 }}>
                 <CoreValues />
               </div>

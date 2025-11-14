@@ -25,7 +25,7 @@ export default function CoreValueBox({
     <div
       id={id}
       className={cn(
-        "absolute p-2 w-[100px] text-center rounded-lg",
+        "absolute p-2 w-[120px] text-center rounded-lg",
         "bg-primary text-primary-foreground",
         COLORS.shadows.sm,
         INTERACTIONS.transition.all,
@@ -44,9 +44,7 @@ export default function CoreValueBox({
         <h3 className={cn(TYPOGRAPHY.fontSize.xs, "m-0")}>{label}</h3>
       </div>
       {expanded && (
-        <p className="text-[0.65rem] mt-1 leading-tight">
-          {definition}
-        </p>
+        <p className="text-[0.65rem] mt-1 leading-tight">{definition}</p>
       )}
     </div>
   );

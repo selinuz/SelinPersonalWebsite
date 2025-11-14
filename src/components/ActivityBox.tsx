@@ -28,13 +28,13 @@ export default function ActivityBox({
     <div
       id={id}
       className={cn(
-        "absolute p-3 w-[200px] text-center rounded-lg",
+        "absolute p-2 w-[230px] text-center rounded-lg",
         "bg-secondary text-secondary-foreground",
         COLORS.shadows.md,
         INTERACTIONS.transition.all,
         INTERACTIONS.cursor.grab,
         "transform -translate-x-1/2 -translate-y-1/2",
-        isSelected && "scale-110 shadow-xl bg-accent text-accent-foreground"
+        isSelected && "scale-105 shadow-xl bg-accent text-accent-foreground"
       )}
       style={{
         left: `${x}px`,
@@ -48,11 +48,7 @@ export default function ActivityBox({
       <p className={cn(TYPOGRAPHY.fontSize.xs, "italic")}>{location}</p>
       <p className={cn(TYPOGRAPHY.fontSize.xs)}>{duration}</p>
       {isSelected && description && (
-        <p
-          className={cn(
-            TYPOGRAPHY.fontSize.xs,
-            "text-left mt-2 leading-tight"
-          )}>
+        <p className={cn("text-[0.65rem]", "text-left mt-2 leading-tight")}>
           {description}
         </p>
       )}
