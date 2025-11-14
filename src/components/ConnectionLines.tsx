@@ -23,6 +23,7 @@ export default function ConnectionLines({
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [selectedLineId, setSelectedLineId] = useState<string | null>(null);
+  const [hoveredLineId, setHoveredLineId] = useState<string | null>(null);
   const isFirstLoadRef = useRef(true);
 
   const drawLines = useCallback(() => {
@@ -30,6 +31,9 @@ export default function ConnectionLines({
     if (!svg) return;
     svg.innerHTML = "";
     const svgRect = svg.getBoundingClientRect();
+
+    // Store text boxes to append them last (so they appear on top)
+    const textBoxes: SVGForeignObjectElement[] = [];
 
     connections.forEach(({ from, to, text }) => {
       const fromEl = document.getElementById(from);
@@ -42,21 +46,24 @@ export default function ConnectionLines({
       const x1 = fromBox.left + fromBox.width / 2 - svgRect.left;
       let y1 = fromBox.top + fromBox.height / 2 - svgRect.top;
       const x2 = toBox.left + toBox.width / 2 - svgRect.left;
-      const y2 = toBox.top + toBox.height / 2 - svgRect.top;
+      let y2 = toBox.top + toBox.height / 2 - svgRect.top;
 
-      // Adjust y1 based on whether the target is above or below
+      // Adjust connection points based on relative positions
       if (y2 > y1) {
-        // Target is below, connect from bottom edge of fromBox
+        // Target is below, connect from bottom edge of fromBox to top edge of toBox
         y1 = fromBox.bottom - svgRect.top;
+        y2 = toBox.top - svgRect.top;
       } else {
-        // Target is above, connect from top edge of fromBox
+        // Target is above, connect from top edge of fromBox to bottom edge of toBox
         y1 = fromBox.top - svgRect.top;
+        y2 = toBox.bottom - svgRect.top;
       }
 
       const lineId = `${from}-${to}`;
       const isHighlighted =
         from === selectedActivityId || to === selectedActivityId;
       const isSelected = selectedLineId === lineId;
+      const isHovered = hoveredLineId === lineId;
 
       // Invisible hitbox for easier clicks
       const hitbox = document.createElementNS(
@@ -74,6 +81,12 @@ export default function ConnectionLines({
       hitbox.style.pointerEvents = "stroke";
       hitbox.addEventListener("click", () => {
         setSelectedLineId((prev) => (prev === lineId ? null : lineId));
+      });
+      hitbox.addEventListener("mouseenter", () => {
+        setHoveredLineId(lineId);
+      });
+      hitbox.addEventListener("mouseleave", () => {
+        setHoveredLineId(null);
       });
       svg.appendChild(hitbox);
 
@@ -100,14 +113,14 @@ export default function ConnectionLines({
       path.setAttribute("data-line-id", lineId);
       path.setAttribute(
         "stroke",
-        isHighlighted || isSelected ? "#DC2626" : "#B91C1C"
+        isHighlighted || isSelected || isHovered ? "#DC2626" : "#B91C1C"
       );
       path.setAttribute(
         "stroke-width",
-        isHighlighted || isSelected ? "3" : "2"
+        isHighlighted || isSelected || isHovered ? "4" : "2"
       );
       path.setAttribute("fill", "none");
-      path.setAttribute("opacity", isHighlighted || isSelected ? "0.9" : "0.7");
+      path.setAttribute("opacity", isHighlighted || isSelected || isHovered ? "1" : "0.6");
       path.setAttribute("stroke-linecap", "round");
       path.style.filter = "drop-shadow(0 1px 2px rgba(220, 38, 38, 0.3))";
       path.style.transition =
@@ -116,39 +129,51 @@ export default function ConnectionLines({
       svg.appendChild(path);
 
       // Add push pins at connection points
-      const startPin = createPushPin(x1, y1, isHighlighted || isSelected);
-      const endPin = createPushPin(x2, y2, isHighlighted || isSelected);
+      const startPin = createPushPin(x1, y1, isHighlighted || isSelected || isHovered);
+      //const endPin = createPushPin(x2, y2, isHighlighted || isSelected);
       svg.appendChild(startPin);
-      svg.appendChild(endPin);
+      //svg.appendChild(endPin);
 
       // Line label (only visible when selected)
-      if (text) {
+      if (text && isSelected) {
         const foreignObject = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "foreignObject"
         );
-        foreignObject.setAttribute("x", (midX - 100).toString());
-        foreignObject.setAttribute("y", (midY - 30).toString());
+        // Set a larger width to accommodate the text
+        const labelWidth = 200;
+        foreignObject.setAttribute("width", labelWidth.toString());
+        foreignObject.setAttribute("height", "100");
+        foreignObject.setAttribute("x", (midX - labelWidth / 2).toString());
+        foreignObject.setAttribute("y", (midY - 50).toString());
         foreignObject.setAttribute("data-line-id", lineId);
-        if (!isSelected) {
-          foreignObject.setAttribute("visibility", "hidden");
-        }
+        foreignObject.style.overflow = "visible";
 
         const div = document.createElement("div");
         div.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
-        div.className =
-          "bg-card text-background rounded-xs p-1 text-center shadow-lg";
-        div.style.fontSize = "0.6rem";
-        div.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
-        div.style.lineHeight = "1";
-        div.style.pointerEvents = "auto";
-        div.innerHTML = text.replace(/\n/g, "<br />");
+        div.className = "flex items-center justify-center";
+        div.style.pointerEvents = "none";
 
+        const textBox = document.createElement("div");
+        textBox.className = "rounded-sm shadow-lg";
+        textBox.style.backgroundColor = "white";
+        textBox.style.padding = "8px 12px";
+        textBox.style.fontSize = "0.65rem";
+        textBox.style.lineHeight = "1.3";
+        textBox.style.color = "#1f2937";
+        textBox.style.maxWidth = "250px";
+        textBox.textContent = text;
+
+        div.appendChild(textBox);
         foreignObject.appendChild(div);
-        svg.appendChild(foreignObject);
+        // Store instead of appending immediately
+        textBoxes.push(foreignObject);
       }
     });
-  }, [selectedActivityId, selectedLineId]);
+
+    // Append all text boxes last so they appear on top
+    textBoxes.forEach((textBox) => svg.appendChild(textBox));
+  }, [selectedActivityId, selectedLineId, hoveredLineId]);
 
   useEffect(() => {
     const svg = svgRef.current;
