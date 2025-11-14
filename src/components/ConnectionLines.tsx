@@ -25,6 +25,7 @@ export default function ConnectionLines({
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [selectedLineId, setSelectedLineId] = useState<string | null>(null);
+  const isFirstLoadRef = useRef(true);
 
   const drawLines = useCallback(() => {
     const svg = svgRef.current;
@@ -174,7 +175,11 @@ export default function ConnectionLines({
       });
 
       if (hasElements) {
-        setTimeout(handleDraw, 250);
+        const delay = isFirstLoadRef.current ? 300 : 0;
+        setTimeout(() => {
+          handleDraw();
+          isFirstLoadRef.current = false;
+        }, delay);
       } else if (retryCount < maxRetries) {
         retryCount++;
         setTimeout(attemptDraw, retryDelay);

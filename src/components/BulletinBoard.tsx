@@ -10,7 +10,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { DraggableProvider } from "@/context/DraggableContext";
 import { Draggable } from "./Draggable";
 import { SocialPinsGroup } from "./SocialPins";
-/// import CoreValues from "./CoreValues";
+import CoreValues from "./CoreValues";
 import SpotifyPlayer from "./SpotifyPlayer";
 import PhotographyGallery from "./PhotographyGallery";
 import {
@@ -270,16 +270,19 @@ export default function BulletinBoard() {
             </div>
           </Draggable>
 
-          {/* Core Values Map */}
-          {/*
-          <Draggable id="core-values">
-            <div
-              className="absolute"
-              style={{ width: isMobile ? "90vw" : "60vw", maxWidth: "800px" }}>
-              <CoreValues />
-            </div>
-          </Draggable>
-          */}
+          {/* Core Values Map - Desktop only */}
+          {!isMobile && (
+            <Draggable id="core-values">
+              <div
+                className="absolute"
+                style={{
+                  width: "60vw",
+                  maxWidth: "800px",
+                }}>
+                <CoreValues />
+              </div>
+            </Draggable>
+          )}
 
           {/* Spotify Player */}
           <Draggable id="spotify-player">
