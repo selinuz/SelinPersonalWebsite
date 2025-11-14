@@ -118,8 +118,7 @@ export default function BulletinBoard() {
           }}></div>
 
         {/* Main content area - using absolute positioning */}
-        <div
-          className={cn("relative z-10 min-h-screen p-4 sm:p-8", "touch-none")}>
+        <div className={cn("relative z-10 min-h-screen p-4 sm:p-8")}>
           {/* Polaroid Picture */}
           <Draggable id="polaroid-card">
             <div className="absolute">
