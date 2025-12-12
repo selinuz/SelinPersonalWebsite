@@ -13,6 +13,7 @@ import { SocialPinsGroup } from "./SocialPins";
 /// import CoreValues from "./CoreValues";
 import SpotifyPlayer from "./SpotifyPlayer";
 import PhotographyGallery from "./PhotographyGallery";
+import ConcertsContainer from "./ConcertsContainer";
 import {
   COLORS,
   CORK_TEXTURE,
@@ -30,6 +31,7 @@ export default function BulletinBoard() {
   const [aboutMeOpen, setAboutMeOpen] = useState(false);
   const [workExperienceOpen, setWorkExperienceOpen] = useState(false);
   const [photographyOpen, setPhotographyOpen] = useState(false);
+  const [concertsOpen, setConcertsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -69,6 +71,7 @@ export default function BulletinBoard() {
         "work-experience-folder": { x: width * 0.6, y: height * 0.4 },
         "resume-file": { x: width * 0.5, y: height * 0.1 },
         "photography-icon": { x: width * 0.4, y: height * 0.2 },
+        "concerts-icon": { x: width * 0.3, y: height * 0.15 },
         "social-pins": { x: width * 0.01, y: height * 0.32 },
         "core-values": { x: width * 0.05, y: height * 0.5 },
         "spotify-player": { x: width * 0.05, y: height * 0.75 },
@@ -89,6 +92,7 @@ export default function BulletinBoard() {
       "work-experience-folder": { x: width * 0.58, y: height * 0.1 },
       "resume-file": { x: width * 0.5, y: height * 0.05 },
       "photography-icon": { x: width * 0.46, y: height * 0.25 },
+      "concerts-icon": { x: width * 0.46, y: height * 0.45 },
       "social-pins": { x: width * 0.22, y: height * 0.4 },
       "core-values": { x: width * 0.05, y: height * 0.45 },
       "spotify-player": { x: width * 0.73, y: height * 0.1 },
@@ -255,6 +259,19 @@ export default function BulletinBoard() {
                 onClick={() => setPhotographyOpen(true)}
                 color={COLORS.icons.photography}
                 type="camera"
+              />
+            </div>
+          </Draggable>
+
+          {/* Concerts */}
+          <Draggable id="concerts-icon">
+            <div className="absolute">
+              <Icon
+                label="Concerts"
+                rotation={2}
+                onClick={() => setConcertsOpen(true)}
+                color={COLORS.icons.concerts}
+                type="music"
               />
             </div>
           </Draggable>
@@ -505,6 +522,14 @@ export default function BulletinBoard() {
               },
             ]}
           />
+        </ProjectDialog>
+
+        <ProjectDialog
+          open={concertsOpen}
+          onOpenChange={setConcertsOpen}
+          title="Concerts"
+          description="My favorite thing to spend money on is live music, so here is a list of all the concerts I've attended over the years.">
+          <ConcertsContainer />
         </ProjectDialog>
       </div>
     </DraggableProvider>

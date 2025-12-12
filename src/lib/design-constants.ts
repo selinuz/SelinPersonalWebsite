@@ -101,6 +101,7 @@ export const COLORS = {
     work: "text-pop-green",
     pdfFile: "text-destructive",
     photography: "text-pop-blue",
+    concerts: "text-pop-yellow",
   },
 
   // Shadow colors
