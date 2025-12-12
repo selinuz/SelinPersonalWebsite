@@ -95,7 +95,7 @@ export default function ConcertsContainer() {
             TYPOGRAPHY.presets.subheading,
             "text-primary hover:text-primary/80 transition-colors"
           )}>
-          <span>Turkish bands I have seen many times</span>
+          <span>Turkish artists I have seen many times</span>
           {turkishBandsExpanded ? (
             <ChevronUp className="w-5 h-5" />
           ) : (

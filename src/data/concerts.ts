@@ -105,7 +105,7 @@ export const concerts: Concert[] = [
   {
     artist: "King Gizzard and the Lizard Wizard",
     date: "June 4, 2024",
-    location: "Vancouver, Canada",
+    location: "Milan, Italy",
     sortDate: new Date("2024-06-04"),
   },
   {
