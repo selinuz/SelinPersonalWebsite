@@ -65,16 +65,16 @@ export default function BulletinBoard() {
         },
         "whats-next-note": {
           x: width * 0.1,
-          y: height * 0.7,
+          y: height * 0.8,
         },
         "projects-folder": { x: width * 0.7, y: height * 0.3 },
-        "work-experience-folder": { x: width * 0.6, y: height * 0.4 },
+        "work-experience-folder": { x: width * 0.4, y: height * 0.3 },
         "resume-file": { x: width * 0.5, y: height * 0.1 },
-        "photography-icon": { x: width * 0.4, y: height * 0.2 },
-        "concerts-icon": { x: width * 0.3, y: height * 0.15 },
-        "social-pins": { x: width * 0.01, y: height * 0.32 },
+        "photography-icon": { x: width * 0.4, y: height * 0.4 },
+        "concerts-icon": { x: width * 0.7, y: height * 0.35 },
+        "social-pins": { x: width * 0.01, y: height * 0.25 },
         "core-values": { x: width * 0.05, y: height * 0.5 },
-        "spotify-player": { x: width * 0.05, y: height * 0.75 },
+        "spotify-player": { x: width * 0.05, y: height * 0.8 },
       };
     }
 
@@ -122,8 +122,7 @@ export default function BulletinBoard() {
           }}></div>
 
         {/* Main content area - using absolute positioning */}
-        <div
-          className={cn("relative z-10 min-h-screen p-4 sm:p-8", "touch-none")}>
+        <div className={cn("relative z-10 min-h-screen p-4 sm:p-8")}>
           {/* Polaroid Picture */}
           <Draggable id="polaroid-card">
             <div className="absolute">
