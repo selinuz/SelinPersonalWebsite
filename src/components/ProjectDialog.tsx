@@ -37,7 +37,7 @@ export default function ProjectDialog({
       <DialogContent
         className={cn(
           maxWidth,
-          "max-w-[95vw] w-full bg-card border-border max-h-[90vh] overflow-y-auto"
+          "max-w-[95vw] w-full bg-card border-border max-h-[70vh] sm:max-h-[90vh] overflow-y-auto"
         )}>
         <DialogHeader>
           <DialogTitle

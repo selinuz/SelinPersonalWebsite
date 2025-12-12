@@ -1,6 +1,6 @@
 "use client";
 
-import { Folder, Briefcase, FileText, Camera, LucideIcon } from "lucide-react";
+import { Folder, Briefcase, FileText, Camera, Music, LucideIcon } from "lucide-react";
 import {
   INTERACTIONS,
   SIZING,
@@ -14,7 +14,7 @@ interface IconProps {
   onClick?: () => void;
   rotation?: number;
   color?: string;
-  type: "folder" | "briefcase" | "file" | "camera";
+  type: "folder" | "briefcase" | "file" | "camera" | "music";
 }
 
 const iconMap: Record<IconProps["type"], LucideIcon> = {
@@ -22,6 +22,7 @@ const iconMap: Record<IconProps["type"], LucideIcon> = {
   briefcase: Briefcase,
   file: FileText,
   camera: Camera,
+  music: Music,
 };
 
 export default function Icon({
