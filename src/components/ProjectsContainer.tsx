@@ -9,7 +9,9 @@ export default function ProjectsContainer() {
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(
     new Set()
   );
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+  const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([]);
+  const [selectedTools, setSelectedTools] = useState<string[]>([]);
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
 
   const toggleExpanded = (id: string) => {
@@ -24,19 +26,41 @@ export default function ProjectsContainer() {
     });
   };
 
-  // Get all unique skills from projects
-  const allSkills = useMemo(() => {
-    return Array.from(new Set(projects.flatMap((project) => project.skills)));
+  // Get all unique languages, frameworks, and tools from projects
+  const allLanguages = useMemo(() => {
+    return Array.from(new Set(projects.flatMap((project) => project.languages)));
   }, []);
 
-  // Filter and sort projects based on selected skills and sort order
+  const allFrameworks = useMemo(() => {
+    return Array.from(new Set(projects.flatMap((project) => project.frameworks)));
+  }, []);
+
+  const allTools = useMemo(() => {
+    return Array.from(new Set(projects.flatMap((project) => project.tools)));
+  }, []);
+
+  // Filter and sort projects based on selected filters and sort order
   const filteredProjects = useMemo(() => {
     let filtered = projects;
 
-    // Filter by skills
-    if (selectedSkills.length > 0) {
-      filtered = projects.filter((project) =>
-        project.skills.some((skill) => selectedSkills.includes(skill))
+    // Filter by languages
+    if (selectedLanguages.length > 0) {
+      filtered = filtered.filter((project) =>
+        project.languages.some((lang) => selectedLanguages.includes(lang))
+      );
+    }
+
+    // Filter by frameworks
+    if (selectedFrameworks.length > 0) {
+      filtered = filtered.filter((project) =>
+        project.frameworks.some((fw) => selectedFrameworks.includes(fw))
+      );
+    }
+
+    // Filter by tools
+    if (selectedTools.length > 0) {
+      filtered = filtered.filter((project) =>
+        project.tools.some((tool) => selectedTools.includes(tool))
       );
     }
 
@@ -50,27 +74,47 @@ export default function ProjectsContainer() {
     });
 
     return sorted;
-  }, [selectedSkills, sortOrder]);
+  }, [selectedLanguages, selectedFrameworks, selectedTools, sortOrder]);
 
-  // Toggle skill filter
-  const toggleSkill = (skill: string) => {
-    setSelectedSkills((prev) =>
-      prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]
+  // Toggle filter functions
+  const toggleLanguage = (language: string) => {
+    setSelectedLanguages((prev) =>
+      prev.includes(language) ? prev.filter((l) => l !== language) : [...prev, language]
+    );
+  };
+
+  const toggleFramework = (framework: string) => {
+    setSelectedFrameworks((prev) =>
+      prev.includes(framework) ? prev.filter((f) => f !== framework) : [...prev, framework]
+    );
+  };
+
+  const toggleTool = (tool: string) => {
+    setSelectedTools((prev) =>
+      prev.includes(tool) ? prev.filter((t) => t !== tool) : [...prev, tool]
     );
   };
 
   // Reset filters
   const resetFilters = () => {
-    setSelectedSkills([]);
+    setSelectedLanguages([]);
+    setSelectedFrameworks([]);
+    setSelectedTools([]);
   };
 
   return (
     <div className="space-y-4">
       {/* Project Filter */}
       <ProjectFilter
-        allSkills={allSkills}
-        selectedSkills={selectedSkills}
-        toggleSkill={toggleSkill}
+        allLanguages={allLanguages}
+        allFrameworks={allFrameworks}
+        allTools={allTools}
+        selectedLanguages={selectedLanguages}
+        selectedFrameworks={selectedFrameworks}
+        selectedTools={selectedTools}
+        toggleLanguage={toggleLanguage}
+        toggleFramework={toggleFramework}
+        toggleTool={toggleTool}
         resetFilters={resetFilters}
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}

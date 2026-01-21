@@ -40,6 +40,7 @@
   --color-pop-green: var(--pop-green);
   --color-pop-blue: var(--pop-blue);
   --color-pop-yellow: var(--pop-yellow);
+  --color-pop-red: var(--pop-red);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -71,6 +72,7 @@ body {
   --pop-green: oklch(0.7 0.25 140);
   --pop-blue: oklch(57.385% 0.16213 249.932);
   --pop-yellow: oklch(0.8 0.18 95);
+  --pop-red: oklch(0.577 0.245 27.325);
   --border: oklch(0.88 0.04 275); /* subtle purple border */
   --input: oklch(0.92 0.03 275);
   --ring: oklch(0.6 0.14 280); /* purple focus ring */
@@ -109,6 +111,7 @@ body {
   --pop-green: oklch(0.8 0.25 140);
   --pop-blue: oklch(82.537% 0.1452 214.121);
   --pop-yellow: oklch(0.85 0.2 100);
+  --pop-red: oklch(0.704 0.191 22.216);
   --border: oklch(0.3 0.06 275);
   --input: oklch(0.25 0.05 270);
   --ring: oklch(0.6 0.16 280);

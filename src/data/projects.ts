@@ -7,7 +7,9 @@ export interface Project {
   description: string;
   detailsTitle?: string;
   details: string[];
-  skills: string[];
+  languages: string[];
+  frameworks: string[];
+  tools: string[];
   link?: string;
   iconType: "github" | "link";
   context?: string;
@@ -29,7 +31,9 @@ export const projects: Project[] = [
       "Integrated contact form allowing visitors to submit messages.",
       "Interactive core values map with draggable and expandable elements.",
     ],
-    skills: ["HTML", "CSS", "JavaScript"],
+    languages: ["TypeScript", "HTML", "CSS"],
+    frameworks: ["React"],
+    tools: [],
     link: "https://github.com/selinuz/selinuz.github.io",
     iconType: "github",
   },
@@ -47,7 +51,9 @@ export const projects: Project[] = [
       "Developed systems like lives, HP bar, inventory, stats displays, and interactive screens.",
       "Originated the project idea, defined the vision, and led weekly scrum meetings.",
     ],
-    skills: ["C++", "OpenGL"],
+    languages: ["C++"],
+    frameworks: [],
+    tools: ["OpenGL"],
     link: "https://github.com/SELINUZ/FERALFREEDOM",
     iconType: "github",
     context: "for CPSC427: Video Game Development",
@@ -65,7 +71,9 @@ export const projects: Project[] = [
       "Implemented sign-up, login, and landing pages frontend using React and JavaScript.",
       "Created the authentication service with Axios to ensure secure user registration and login via internal API.",
     ],
-    skills: ["React", "JavaScript", "npm"],
+    languages: ["JavaScript"],
+    frameworks: ["React"],
+    tools: ["npm"],
     link: "https://github.com/irmikimikmik/PLUMAGE-for-YouCode2024",
     iconType: "github",
     context: "for youCode x Arc'teryx 2024",
@@ -82,7 +90,9 @@ export const projects: Project[] = [
       "Identified a UX issue with the baby model becoming lost in AR mode; implemented a recenter feature in Unity with C#.",
       "Integrated Lean Touch for intuitive touch-based interaction, allowing users to explore the birth process with rotation and scaling.",
     ],
-    skills: ["Unity", "C#", "Vuforia AR SDK"],
+    languages: ["C#"],
+    frameworks: [],
+    tools: ["Unity", "Vuforia AR SDK"],
     link: "https://eml.ubc.ca/projects/ar-application-for-midwifery-education/",
     iconType: "link",
     context: "for MDIA470: Developing Emerging Technologies",
@@ -100,17 +110,19 @@ export const projects: Project[] = [
       "Implemented backend logic with PHP and CodeIgniter framework.",
       "Designed and managed a MySQL database for secure and efficient data storage.",
     ],
-    skills: ["HTML5", "CSS", "JavaScript", "PHP", "CodeIgniter", "MySQL"],
+    languages: ["JavaScript", "PHP", "HTML", "CSS", "SQL"],
+    frameworks: ["CodeIgniter"],
+    tools: ["MySQL"],
     link: "https://github.com/selinuz/ProjectBuddies",
     iconType: "github",
     context: "for CPSC304: Introduction to Relational Databases",
   },
   {
     id: "6",
-    title: "CampusBuddy ",
+    title: "Advisor Help ",
     subtitle: "(RAG Chatbot)",
-    duration: "May 2025 – Present",
-    startDate: "2025-05",
+    duration: "June 2025 – Present",
+    startDate: "2025-06",
     description:
       "Designed and built a Retrieval-Augmented Generation (RAG) chatbot to simplify access to UBC academic information",
     detailsTitle: "Personal Contributions:",
@@ -119,7 +131,9 @@ export const projects: Project[] = [
       "Built a Retrieval-Augmented Generation (RAG) chatbot using FastAPI, LangChain, and OpenAI embeddings.",
       "Designed a scalable React frontend with a context-aware chat interface, reusable components, and a clean design system supporting cited sources and prompt suggestions.",
     ],
-    skills: ["FastAPI", "LangChain", "OpenAI", "React", "TypeScript"],
+    languages: ["TypeScript", "Python"],
+    frameworks: ["React", "FastAPI", "LangChain"],
+    tools: ["Docker", "PostgreSQL", "OpenAI"],
     iconType: "github",
   },
 ];

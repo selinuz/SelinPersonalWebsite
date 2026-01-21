@@ -30,7 +30,7 @@ export default function ProjectDialog({
   children,
   size = "default",
 }: ProjectDialogProps) {
-  const maxWidth = size === "wide" ? "sm:max-w-[1200px]" : "sm:max-w-[700px]";
+  const maxWidth = size === "wide" ? "sm:max-w-[1200px]" : "sm:max-w-[900px]";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

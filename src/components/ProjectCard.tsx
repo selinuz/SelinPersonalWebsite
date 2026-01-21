@@ -77,14 +77,36 @@ const ProjectCard: React.FC<Props> = ({
           {project.description}
         </p>
 
-        {/* Skills */}
+        {/* Languages, Frameworks, and Tools */}
         <div className="flex flex-wrap gap-2">
-          {project.skills.map((skill) => (
+          {project.languages.map((language) => (
             <Badge
-              key={skill}
-              variant="secondary"
-              className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
-              {skill}
+              key={language}
+              className={cn(
+                TYPOGRAPHY.fontFamily.mono,
+                "text-sm border-transparent bg-pop-blue/20 text-pop-blue dark:bg-pop-blue/30"
+              )}>
+              {language}
+            </Badge>
+          ))}
+          {project.frameworks.map((framework) => (
+            <Badge
+              key={framework}
+              className={cn(
+                TYPOGRAPHY.fontFamily.mono,
+                "text-sm border-transparent bg-pop-green/20 text-pop-green dark:bg-pop-green/30"
+              )}>
+              {framework}
+            </Badge>
+          ))}
+          {project.tools.map((tool) => (
+            <Badge
+              key={tool}
+              className={cn(
+                TYPOGRAPHY.fontFamily.mono,
+                "text-sm border-transparent bg-pop-red/20 text-pop-red dark:bg-pop-red/30"
+              )}>
+              {tool}
             </Badge>
           ))}
         </div>
