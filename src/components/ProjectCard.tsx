@@ -72,7 +72,7 @@ const ProjectCard: React.FC<Props> = ({
         <p
           className={cn(
             TYPOGRAPHY.fontFamily.mono,
-            "text-sm md:text-base leading-relaxed"
+            "text-sm leading-relaxed"
           )}>
           {project.description}
         </p>
@@ -129,7 +129,7 @@ const ProjectCard: React.FC<Props> = ({
               <p
                 className={cn(
                   TYPOGRAPHY.fontFamily.mono,
-                  "font-semibold text-sm md:text-base"
+                  "font-semibold text-sm"
                 )}>
                 {project.detailsTitle}
               </p>

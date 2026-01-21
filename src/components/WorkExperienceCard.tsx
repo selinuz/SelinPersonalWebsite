@@ -29,10 +29,17 @@ const WorkExperienceCard: React.FC<Props> = ({
       className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1"
       onClick={() => toggleExpanded(experience.id)}>
       <CardHeader>
-        <CardTitle
-          className={cn(TYPOGRAPHY.fontFamily.mono, "text-lg md:text-xl")}>
-          {experience.company}
-        </CardTitle>
+        <div className="flex justify-between items-start gap-2">
+          <CardTitle
+            className={cn(TYPOGRAPHY.fontFamily.mono, "text-lg md:text-xl")}>
+            {experience.company}
+          </CardTitle>
+          <Badge
+            variant="outline"
+            className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs shrink-0")}>
+            {experience.location}
+          </Badge>
+        </div>
         <CardDescription className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
           {experience.position} | {experience.employmentType}
         </CardDescription>
@@ -42,24 +49,60 @@ const WorkExperienceCard: React.FC<Props> = ({
       </CardHeader>
 
       <CardContent className="space-y-3">
-        <div className="flex items-center gap-2">
-          <Badge
-            variant="outline"
-            className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
-            {experience.location}
-          </Badge>
-        </div>
 
-        {/* Skills */}
-        <div className="flex flex-wrap gap-2">
-          {experience.skills.map((skill) => (
-            <Badge
-              key={skill}
-              variant="secondary"
-              className={cn(TYPOGRAPHY.fontFamily.mono, "text-sm")}>
-              {skill}
-            </Badge>
-          ))}
+        {/* Tools, Methodologies, and Soft Skills */}
+        <div className="space-y-2">
+          {experience.tools.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1">
+              <span className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs text-pop-blue mr-1")}>
+                Tools:
+              </span>
+              {experience.tools.map((tool) => (
+                <Badge
+                  key={tool}
+                  className={cn(
+                    TYPOGRAPHY.fontFamily.mono,
+                    "text-xs border-transparent bg-pop-blue/20 text-pop-blue dark:bg-pop-blue/30"
+                  )}>
+                  {tool}
+                </Badge>
+              ))}
+            </div>
+          )}
+          {experience.methodologies.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1">
+              <span className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs text-pop-green mr-1")}>
+                Methodologies:
+              </span>
+              {experience.methodologies.map((methodology) => (
+                <Badge
+                  key={methodology}
+                  className={cn(
+                    TYPOGRAPHY.fontFamily.mono,
+                    "text-xs border-transparent bg-pop-green/20 text-pop-green dark:bg-pop-green/30"
+                  )}>
+                  {methodology}
+                </Badge>
+              ))}
+            </div>
+          )}
+          {experience.softSkills.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1">
+              <span className={cn(TYPOGRAPHY.fontFamily.mono, "text-xs text-pop-red mr-1")}>
+                Soft Skills:
+              </span>
+              {experience.softSkills.map((skill) => (
+                <Badge
+                  key={skill}
+                  className={cn(
+                    TYPOGRAPHY.fontFamily.mono,
+                    "text-xs border-transparent bg-pop-red/20 text-pop-red dark:bg-pop-red/30"
+                  )}>
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Click to expand hint */}
@@ -79,11 +122,11 @@ const WorkExperienceCard: React.FC<Props> = ({
             <p
               className={cn(
                 TYPOGRAPHY.fontFamily.mono,
-                "font-semibold text-sm md:text-base"
+                "font-semibold text-sm"
               )}>
               Key Responsibilities:
             </p>
-            <ul className="space-y-2 list-disc list-inside text-sm md:text-base">
+            <ul className="space-y-2 list-disc list-inside text-sm">
               {experience.responsibilities.map((item, i) => (
                 <li
                   key={i}

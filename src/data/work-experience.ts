@@ -7,7 +7,9 @@ export interface WorkExperience {
   startDate: string; // Format: YYYY-MM for sorting
   location: string;
   responsibilities: string[];
-  skills: string[];
+  tools: string[];
+  methodologies: string[];
+  softSkills: string[];
 }
 
 export const workExperiences: WorkExperience[] = [
@@ -30,17 +32,15 @@ export const workExperiences: WorkExperience[] = [
       "Supported a remote event organized by internal operations, reaching 80% attendance worldwide.",
       "Wrote scripts for kickoff and instructional videos to ensure clarity and engagement during the launch.",
     ],
-    skills: [
-      "ServiceNow",
-      "Jira",
-      "Requirements Collection",
+    tools: ["ServiceNow", "Jira"],
+    methodologies: [
       "Agile",
       "Program Management",
-      "Cloud Migration",
-      "Cross-Functional Collaboration",
-      "Stakeholder Communication",
+      "Requirements Collection",
       "Risk Management",
+      "Change Management",
     ],
+    softSkills: ["Cross-Functional Collaboration", "Stakeholder Communication"],
   },
   {
     id: "2",
@@ -60,17 +60,19 @@ export const workExperiences: WorkExperience[] = [
       "PM for internal LMS platform: managed a team of 8 interns, prioritized features, led sprint planning.",
       "Led weekly meetings with the VP, QA leads, and managers to address priority issues and quality concerns.",
     ],
-    skills: [
+    tools: [
       "Python",
       "Jenkins",
-      "CI/CD",
       "Jira",
-      "Agile",
-      "Process Automation",
       "Microsoft Excel",
-      "Stakeholder Communication",
-      "Project Management",
       "SAP Analytics Cloud",
     ],
+    methodologies: [
+      "CI/CD",
+      "Agile",
+      "Process Automation",
+      "Project Management",
+    ],
+    softSkills: ["Stakeholder Communication"],
   },
 ];
